@@ -1,0 +1,286 @@
+/* pages/shop/shop.wxss */
+
+.header{
+  height: 183rpx;
+  background-color: #333;
+  box-sizing: border-box;
+  padding: 0 25rpx
+}
+
+.shop-description{
+  height: 129rpx;
+  width: 100%;
+  border-bottom: 1px solid #666;
+  display: flex;
+
+}
+.shop-logo{
+  height: 130rpx;
+  width: 150rpx;
+  float: left;
+  overflow: hidden
+}
+.shop-logo-image{
+  height: 82rpx;width: 93rpx;
+  margin-left: 30rpx;margin-top: 23rpx
+}
+.shop-info{
+flex: 1;
+font-size: 24rpx;
+color: white;
+line-height: 35rpx;
+box-sizing: border-box;
+padding-top: 30rpx
+}
+.shop-activity{
+  height: 53rpx;
+  width: 100%;
+  font-size: 24rpx;
+  color: white;
+  line-height: 53rpx;
+}
+
+.foods{
+  position: fixed;
+  width: 100%;
+  top:183rpx;
+  left: 0;
+  bottom: 100rpx;
+  display: flex;
+}
+
+.foods-categroy{
+  width:196rpx;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #f4f4f4
+}
+.categroy-item{
+  box-sizing: border-box;
+  padding: 0 15rpx;
+  font-size: 30rpx;
+  width: 196rpx;
+  height: 122rpx;
+  line-height: 122rpx;
+  text-align: center
+}
+.categroy-text{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px dashed #ccc
+}
+
+.categroy-active{
+  background-color: white;
+  color: #ed693b;
+}
+.categroy-active .categroy-text{
+  border: none
+}
+
+::-webkit-scrollbar{
+  display: none
+}
+
+.foods-group{
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 35rpx;
+  overflow-y: scroll;
+  overflow-x: hidden
+}
+.group-item{
+  overflow: hidden;
+  display: flex;
+  border-bottom: 1rpx solid #E4E4E4;
+  margin-bottom: 40rpx
+}
+.group-name{
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 28rpx
+}
+.group-item-img{
+  width: 127rpx;
+  height: 127rpx;
+  border-radius: 5px;
+  overflow: hidden;
+  float: left
+}
+.group-item-pic{
+  height: 127rpx;
+  width: 127rpx;
+}
+.group-item-description{
+flex: 1;
+margin-left: 20rpx
+}
+.group-item-description-title{
+  font-size: 32rpx;
+  padding-top: 5rpx
+}
+.group-item-description-digest{
+  font-size: 26rpx;
+  padding-top: 5rpx
+}
+.group-item-order{
+  height: 39rpx;
+  font-size: 35rpx;
+  margin: 10px 0
+  
+}
+.group-item-order-price,.group-item-order-count{
+  width: 50%;height: 39rpx;float:left
+}
+.group-item-order-price{
+  color: #ed693b;
+  font-size: 35rpx;
+  line-height: 39rpx
+}
+.group-item-order-count{
+  text-align: right;padding-right: 35rpx;
+  box-sizing: border-box
+}
+
+.footer{
+  height: 100rpx;width:100%;
+  position: fixed;
+  bottom: 0;left: 0;
+  display: flex;
+  z-index: 222
+}
+
+.footer-total{
+  flex: 1;
+  line-height: 100rpx;
+  padding-left: 180rpx;
+  position: relative;
+  background-color: #313131;
+  color: white
+}
+
+.footer-submit{
+  height: 100rpx;width: 278rpx;background-color: #ffaf02;
+  font-size: 38rpx;color: white;text-align: center;line-height: 100rpx
+}
+
+.shopping-car{
+  height: 118rpx;width: 118rpx;border-radius: 50%;background-color: #ffaf02;
+  overflow: hidden;
+  position: absolute;
+  bottom:27rpx;left:30rpx;
+  z-index: 111;
+}
+
+.shopping-car-img{
+  height: 118rpx;width: 118rpx
+}
+
+.shopping-car-count{
+  position: absolute;
+  height: 43rpx;width: auto;
+  line-height: 43rpx;
+  background-color: #ff3c00;
+  color: white;
+  top:-22px;
+left:95rpx;
+
+
+  z-index: 112;
+  font-size: 30rpx;
+  padding:0 5px;border-radius: 10px
+}
+
+.show-car{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 100rpx;
+  background-color: rgba(0,0,0,0.35);
+  z-index: 90;
+  display: none
+}
+.show-car-wrap{
+  height: 498rpx;width: 100%;position: absolute;bottom: 0;left: 0;background-color: white;
+  overflow-y: scroll;overflow-x: hidden;z-index: 91
+}
+.show-car-title{
+  height: 53rpx;width: 100%;
+  font-size: 24rpx;line-height: 53rpx;
+  background-color: #F4F4F4
+}
+
+.show-car-title-text{
+  border-left: 5rpx solid #ED693B;padding-left: 13rpx;margin-left: 28rpx;float: left
+}
+
+.delete-car-title-text{
+  float: right;padding-right: 25rpx;
+}
+
+.show-car-item{
+  height: 98rpx;
+  width: 100%;border-bottom: 1rpx solid #ccc
+}
+
+.show-car-item-name{
+  height: 98rpx;
+  margin-left: 42rpx;
+  line-height: 98rpx;
+  font-size: 32rpx;
+  float: left
+}
+
+.show-car-item-change{
+  float:right;
+  font-size:32rpx;
+   line-height:98rpx;
+   margin-right: 26rpx
+}
+
+.show-car-item-cut{
+  display: inline-block;
+  height: 38rpx;
+  width: 38rpx;
+  box-sizing: border-box;
+  border:1rpx solid #ccc;
+  text-align: center;line-height: 38rpx;
+  border-radius: 50%
+}
+
+
+.addIcon{
+  display: inline-block;
+  background-image: url(http://localhost:7890/images/icons.png);
+  background-repeat: no-repeat;
+  height: 39rpx;
+  width: 39rpx;
+  background-position-x:-42rpx;
+background-position-y:-41rpx;
+overflow:hidden;
+background-size:80rpx 80rpx;
+
+}
+
+.cutIcon{
+  display: inline-block;
+  background-image: url(http://localhost:7890/images/icons.png);
+  background-repeat: no-repeat;
+  height: 39rpx;
+  width: 39rpx;
+  background-position-x:0rpx;
+background-position-y:0rpx;
+
+overflow:hidden;
+background-size:80rpx 80rpx;
+}
+
+.count{
+  display: inline-block;
+  width: 38rpx;text-align: center;
+  height: 39rpx;font-size: 20rpx;
+  vertical-align: top;line-height: 39rpx;color: #999
+}

@@ -1,0 +1,70 @@
+<!--pages/shop/shop.wxml-->
+<view class='header'>
+  <view class='shop-description'>
+    <view class='shop-logo'>
+      <image src="{{src}}" class='shop-logo-image'></image>
+    </view>
+    <view class='shop-info'>
+      专注之所以为师。造饭师，专注健康饮食，务求保留食材本味，忠于食材本质
+    </view>
+  </view>
+  <view class='shop-activity'>满40减15</view>
+</view>
+<view class='foods'>
+  <scroll-view scroll-y class='foods-categroy'>
+    <view wx:for="{{categroys}}" class='{{item.active?"categroy-item categroy-active":"categroy-item"}}' bindtap='testHandler' data-id='{{index}}'>
+      <text class='categroy-text'>{{item.text}}</text>
+    </view>
+  </scroll-view>
+  <view class='foods-group'>
+    <view class='group-name'>热门饮品</view>
+    <view class='group-item' wx:for="{{foods}}">
+      <view class='group-item-img'>
+        <image src='{{item.pic}}' class='group-item-pic'></image>
+      </view>
+      <view class='group-item-description'>
+        <view class='group-item-description-title'>{{item.title}}</view>
+        <view class='group-item-description-digest'>{{item.description}}</view>
+        <view class='group-item-order'>
+          <view class='group-item-order-price'>￥{{item.price}}</view>
+          <view class='group-item-order-count'>
+            <text class='cutIcon'  bindtap="cutCurrentFood" data-index="{{index}}" style="{{item.uCount>0?'':'display:none'}}"></text>
+            <text class='count' style="{{item.uCount>0?'':'display:none'}}">{{item.uCount}}</text>
+            <text class='addIcon' bindtap="addCurrentFood" data-index="{{index}}"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='footer'>
+  <view class='footer-total'>
+    合计：{{totalPrice}}元
+    <view class='shopping-car'>
+      <image src='{{carUrl}}' class='shopping-car-img'></image>
+    </view>
+     <view class='shopping-car-count' style='{{totalCount>0?"":"display:none"}}'>{{totalCount}}</view>
+  </view>
+  <view class='footer-submit'>选好了</view>
+</view>
+
+<view class='show-car'>
+  <view class='show-car-wrap'>
+    <view class='show-car-title'>
+      <text class='show-car-title-text'>已选餐品</text>
+      <text class='delete-car-title-text'>清空购物袋</text>
+    </view>
+    <view class='show-car-list'>
+      <view class='show-car-item'>
+        <view class='show-car-item-name'>冰镇西瓜汁</view>
+        <view class='show-car-item-change'>
+          <text>￥15</text>
+          <text class='show-car-item-cut'>-</text>
+          <text class='show-car-item-count'>15</text>
+          <text class='show-car-item-add'>＋</text>
+        </view>
+        
+      </view>
+    </view>
+  </view>
+</view>
