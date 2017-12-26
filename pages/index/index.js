@@ -177,7 +177,9 @@ Page({
     this.setData({
       foods: foods
     });
-    this.nextHandler()
+    wx.navigateTo({
+      url: '../selectAddress/selectAddress',
+    })
   },
 
   /**

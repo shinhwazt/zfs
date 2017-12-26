@@ -1,0 +1,72 @@
+/* pages/address/address.wxss */
+.write-address{
+  width: 100%;
+  position:fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;overflow-x: hidden;
+  overflow-y: scroll;background-color: #f4f4f4
+}
+.panel-title{
+  height: 50rpx;width: 100%;text-align: left;line-height: 50rpx;
+  font-size: 26rpx;padding-left: 30rpx
+}
+.info{
+  height: 227rpx;
+  width: 100%;background-color: white;
+}
+.info-item{
+  height: 75rpx;
+  width: 100%;
+}
+.info-item-name{
+  width: 100%;margin-left: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #e4e4e4;
+  display: flex
+}
+.info-item-phone{
+  width: 100%;margin-left: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #e4e4e4;
+  display: flex
+}
+.info-item-sex{
+  width: 100%;margin-left: 125rpx;box-sizing: border-box;
+  border-bottom: 1px solid #e4e4e4
+}
+.label{
+  display: inline-block;
+  height: 75rpx;line-height: 75rpx;
+  width: 95rpx;text-align: left;
+  font-size: 28rpx;
+}
+.phone{
+  width: 120rpx
+}
+.input{
+  flex: 1;
+  display: inline-block;
+  height: 75rpx;
+  font-size: 28rpx;
+}
+
+.address-panel{
+  height: 153rpx;width: 100%;background-color: white;
+}
+.address-item{
+  height: 75rpx;width: 100%;margin-left: 30rpx;
+  border-bottom: 1rpx solid #e4e4e4;display: flex
+}
+.address-label{
+  display: inline-block;
+  height: 75rpx;box-sizing: border-box;
+  padding-right: 20rpx;
+  line-height: 75rpx;text-align: left;font-size: 28rpx;
+}
+.address-input{
+  display: inline-block;
+  flex: 1;
+  height: 75rpx;
+  font-size: 28rpx
+}

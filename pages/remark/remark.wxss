@@ -1,0 +1,29 @@
+/* pages/remark/remark.wxss */
+.remark{
+  width: 100%;
+  position: fixed;
+  top:0;left: 0;bottom: 0;
+  background-color: #f4f4f4
+}
+.remark-content{
+  height: 476rpx;width: 100%;background-color: white
+}
+.textarea{
+  height: 294rpx;width: 695rpx;background-color: #f4f4f4;
+  margin:0 auto;font-size: 32rpx;padding:20rpx;box-sizing: border-box
+}
+.text-group{
+  width: 695rpx;height: 150rpx;margin:0 auto;overflow: hidden
+}
+.text-item{
+  display: inline-block;
+  height: 43rpx;width: auto;line-height: 43rpx;text-align: center;padding:0 10rpx;
+  border:1px solid #dddddd;
+  font-size: 26rpx;border-radius: 5rpx;
+  margin-top:22rpx;margin-right: 27rpx
+}
+.btn{
+  height: 78rpx;width: 646rpx;margin:127rpx auto 0 auto;
+  background-color: #ffaf02;color:#333;font-size: 38rpx;
+  text-align: center;line-height: 78rpx
+}

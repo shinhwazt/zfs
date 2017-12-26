@@ -3,14 +3,16 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/shop/shop",
-
-    "pages/distribution/distribution"
+    "pages/distribution/distribution",
+    "pages/remark/remark",
+    "pages/address/address",
+    "pages/receipt/receipt",
+    "pages/selectAddress/selectAddress"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "造饭师",
     "navigationBarTextStyle": "black"
   }
-  
 }

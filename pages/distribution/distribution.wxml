@@ -48,6 +48,10 @@
       <view class='pay-type-item-left'>支付方式 </view>
       <view class='pay-type-item-right'>在线支付</view>
     </view>
+    <view class='pay-type-item'>
+      <view class='pay-type-item-left'>备注</view>
+      <view class='pay-type-item-right'>口味、偏好等要求</view>
+    </view>
   </view>
   
 </view>

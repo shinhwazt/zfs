@@ -1,0 +1,18 @@
+<!--pages/receipt/receipt.wxml-->
+<view class='receipt-content'>
+
+  <view class='receipt-panel'>
+      <view class='receipt-item'>
+        <label class='receipt-label'>公司抬头：</label>
+        <input class='receipt-input' placeholder='请填写' bindinput='updateTitle' value='{{title}}'></input>
+      </view>
+      <view class='receipt-item'>
+        <label class='receipt-label'>纳税人识别号： </label>
+        <input class='receipt-input' placeholder='请填写' bindinput='updateCode' value='{{code}}'></input>
+      </view>
+  </view>
+
+  <view class='btn' bindtap='getData'>
+  完成
+  </view>
+</view>

@@ -1,0 +1,19 @@
+/* pages/selectAddress/selectAddress.wxss */
+.selectAddressPanel{
+  width: 100%;
+  position: fixed;
+  top: 0;left: 0;
+  bottom: 0;background-color: #f4f4f4;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.address-group{
+  height: auto;width: 100%;background-color: white;
+  
+}
+
+.add-item{
+  height: 80rpx;width: 100%;background-color: white;font-size: 28rpx;
+  line-height: 80rpx;text-align: center;
+}

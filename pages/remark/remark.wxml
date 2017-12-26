@@ -1,0 +1,17 @@
+<!--pages/remark/remark.wxml-->
+
+<view class='remark'>
+  <view class='remark-content'>
+    <textarea class='textarea' value='{{remarkContent}}' bindinput="textareaChange">
+    </textarea>
+
+    <view class='text-group'>
+      <text class='text-item' wx:for="{{remark}}" data-text='{{item}}' bindtap='tapTextHandler'>{{item}}</text>
+    </view>
+    
+  </view>
+
+  <view class='btn' bindtap='finishHandler'>
+  完成
+  </view>
+</view>

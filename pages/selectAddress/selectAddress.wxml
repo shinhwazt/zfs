@@ -1,0 +1,7 @@
+<!--pages/selectAddress/selectAddress.wxml-->
+<view class='selectAddressPanel'>
+  <view class='address-group'>
+
+    <view class='add-item'></view>
+  </view>
+</view>
