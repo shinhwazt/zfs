@@ -201,7 +201,7 @@ left:95rpx;
   bottom: 100rpx;
   background-color: rgba(0,0,0,0.35);
   z-index: 90;
-  display: none
+  
 }
 .show-car-wrap{
   height: 498rpx;width: 100%;position: absolute;bottom: 0;left: 0;background-color: white;
@@ -238,7 +238,11 @@ left:95rpx;
   float:right;
   font-size:32rpx;
    line-height:98rpx;
-   margin-right: 26rpx
+   margin-right: 26rpx;
+   overflow: hidden;
+   color: #999;
+   height: 98rpx;
+   box-sizing: border-box;
 }
 
 .show-car-item-cut{
@@ -259,9 +263,9 @@ left:95rpx;
   height: 39rpx;
   width: 39rpx;
   background-position-x:-42rpx;
-background-position-y:-41rpx;
-overflow:hidden;
-background-size:80rpx 80rpx;
+  background-position-y:-41rpx;
+  overflow:hidden;
+  background-size:80rpx 80rpx;
 
 }
 
@@ -283,4 +287,48 @@ background-size:80rpx 80rpx;
   width: 38rpx;text-align: center;
   height: 39rpx;font-size: 20rpx;
   vertical-align: top;line-height: 39rpx;color: #999
+}
+.cutIconCar{
+  display: inline-block;
+  background-image: url(http://localhost:7890/images/icons.png);
+  background-repeat: no-repeat;
+  height: 39rpx;
+  width: 39rpx;
+  background-position-x:0rpx;
+background-position-y:0rpx;
+vertical-align: middle;
+overflow:hidden;
+background-size:80rpx 80rpx;
+
+}
+.addIconCar{
+  display:inline-block;
+background-image:url(http://localhost:7890/images/icons.png);
+background-repeat:no-repeat;
+height:39rpx;
+width:39rpx;
+background-position-x:-42rpx;
+background-position-y:0rpx;
+overflow:hidden;
+vertical-align: middle;
+background-size:80rpx 80rpx;
+
+}
+
+.show-car-item-cost{
+  height: 39rpx;
+  width: auto;
+  
+  display: inline-block;
+  font-size: 32rpx;
+  margin-right: 31rpx
+}
+
+.show-car-item-count{
+  width: 60rpx;
+  height: 39rpx;
+  display: inline-block;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 39rpx;
 }

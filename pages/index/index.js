@@ -18,7 +18,9 @@ Page({
     currentActiveIndex:0,
     totalCount:0,
     totalPrice: 0,
-    carUrl:"http://localhost:7890/images/car.png"
+    carUrl:"http://localhost:7890/images/car.png",
+    showCarPanel:false,
+    carFoods:[]
   },
   testHandler:function(e){
     var currentActiveIndex = this.data.currentActiveIndex;
@@ -63,6 +65,49 @@ Page({
     });
     this.computePrice(0, price);
   },
+  //在购物车中增加
+  addCarFood:function(e){
+    var index = e.currentTarget.dataset.index;
+    var pIndex = e.currentTarget.dataset.pIndex;
+    var carFoods = this.data.carFoods;
+    var foods = this.data.foods;
+    var current = carFoods[index];
+    var pCurrent = foods[pIndex];
+    var price = current.price;
+    var currentCount = current.uCount;
+    current.uCount = currentCount + 1;
+    pCurrent.uCount = currentCount + 1;
+    this.setData({
+      carFoods: carFoods,
+      foods: foods
+    });
+    this.computePrice(1, price);
+
+  },
+  //在购物车中删除
+  cutCarFood:function(e){
+    var index = e.currentTarget.dataset.index;
+    var pIndex = e.currentTarget.dataset.pIndex;
+    var carFoods = this.data.carFoods;
+    var foods = this.data.foods;
+    var current = carFoods[index];
+    var pCurrent = foods[pIndex];
+    var currentCount = current.uCount;
+    var price = current.price;
+    current.uCount = currentCount - 1;
+    pCurrent.uCount = currentCount - 1;
+    if (current.uCount===0){
+      carFoods.splice(index,1);
+    }
+    if (carFoods.length==0){
+      this.hideCarPanel();
+    }
+    this.setData({
+      carFoods: carFoods,
+      foods: foods
+    });
+    this.computePrice(0, price);
+  },
   //计算购物车商品数量金额
   computePrice:function(behavior,price){
     var currentCount = this.data.totalCount;
@@ -83,6 +128,42 @@ Page({
       });
     }
   },
+  //show car panel
+  showCarPanel:function(){
+    var result = this.data.showCarPanel?false:true;
+    var totalCount = this.data.totalCount;
+    var foods = this.data.foods;
+    var carFoods = [];
+    if(totalCount===0){
+     return console.log("购物车空空如也");
+    }else{
+      for (var i = 0,il = foods.length;i<il;i++){
+        var food = foods[i];
+        if(food.uCount!=0){
+          carFoods.push(food);
+        }
+      }
+      this.setData({
+        carFoods: carFoods
+      })
+    }
+    
+    this.setData({
+      showCarPanel: result
+    });
+  },
+  //购物车为空隐藏购物车
+  hideCarPanel:function(){
+    this.setData({
+      showCarPanel:false
+    })
+  },
+  //提交数据到下一步
+  nextHandler:function(){
+    wx.navigateTo({
+      url: '../distribution/distribution',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -91,10 +172,12 @@ Page({
     
     for (var i = 0, il = foods.length;i<il;i++){
       foods[i].uCount = 0;
+      foods[i].pIndex = i;
     }
     this.setData({
       foods: foods
-    })
+    });
+    this.nextHandler()
   },
 
   /**

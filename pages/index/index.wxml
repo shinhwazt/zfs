@@ -38,32 +38,31 @@
   </view>
 </view>
 <view class='footer'>
-  <view class='footer-total'>
+  <view class='footer-total' bindtap='showCarPanel'>
     合计：{{totalPrice}}元
     <view class='shopping-car'>
       <image src='{{carUrl}}' class='shopping-car-img'></image>
     </view>
      <view class='shopping-car-count' style='{{totalCount>0?"":"display:none"}}'>{{totalCount}}</view>
   </view>
-  <view class='footer-submit'>选好了</view>
+  <view class='footer-submit' bindtap='nextHandler'>选好了</view>
 </view>
 
-<view class='show-car'>
+<view class='show-car' style='{{showCarPanel?"":"display:none"}}'>
   <view class='show-car-wrap'>
     <view class='show-car-title'>
       <text class='show-car-title-text'>已选餐品</text>
       <text class='delete-car-title-text'>清空购物袋</text>
     </view>
     <view class='show-car-list'>
-      <view class='show-car-item'>
-        <view class='show-car-item-name'>冰镇西瓜汁</view>
+      <view class='show-car-item' wx:for="{{carFoods}}">
+        <view class='show-car-item-name'>{{item.title}}</view>
         <view class='show-car-item-change'>
-          <text>￥15</text>
-          <text class='show-car-item-cut'>-</text>
-          <text class='show-car-item-count'>15</text>
-          <text class='show-car-item-add'>＋</text>
+          <text class='show-car-item-cost'>￥{{item.uCount*item.price}}</text>
+          <text class='cutIconCar' bindtap='cutCarFood' data-index='{{index}}' data-p-index='{{item.pIndex}}'></text>
+          <text class='show-car-item-count'>{{item.uCount}}</text>
+          <text class='addIconCar' bindtap='addCarFood' data-index='{{index}}' data-p-index='{{item.pIndex}}'></text>
         </view>
-        
       </view>
     </view>
   </view>

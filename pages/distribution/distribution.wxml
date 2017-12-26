@@ -1,0 +1,57 @@
+<view class='header'>
+  <view class='header-tabbar'>
+    <text class='header-tabbar-text header-tabbar-text-active'>外卖配送</text>
+  </view>
+  <view class='header-tabbar'>
+    <text class='header-tabbar-text'>到店自取</text>
+  </view>
+</view>
+<view class='main'>
+  <view class='address'>
+  </view>
+  <view class='foods'>
+    <view class='foods-store'>
+      <view class='foods-store-wrap'>
+        <image src='{{url}}' class='foods-store-img'></image>
+      </view>
+      <view class='foods-store-name'>
+        造饭师（勒泰中心店）
+      </view>
+    </view>
+
+    <view class='foods-list-item'>
+      <view class='foods-list-item-wrap'>
+        <image src='{{url}}' class='foods-list-item-img'></image>
+      </view>
+      <view class='foods-list-item-message'>
+        <view class='foods-list-item-name'>可爱的汤圆君</view>
+        <view class='foods-list-item-count'>+1</view>
+      </view>
+      <view class='foods-list-item-price'>
+      $45
+      </view>
+    </view>
+
+    <view class='bo-cost'>
+      <view class='bo-cost-name'>
+        餐盒费 
+      </view>
+      <view class='bo-cost-price'>
+      ￥20
+      </view>
+    </view>
+
+  </view>
+
+  <view class='pay-type'>
+    <view class='pay-type-item'>
+      <view class='pay-type-item-left'>支付方式 </view>
+      <view class='pay-type-item-right'>在线支付</view>
+    </view>
+  </view>
+  
+</view>
+<view class='footer'>
+  <view class='footer-info'>待支付：135元</view>
+  <view class='footer-btn'>提交订单</view>
+</view>
