@@ -35,6 +35,37 @@
   width: 100%;margin-left: 125rpx;box-sizing: border-box;
   border-bottom: 1px solid #e4e4e4
 }
+.sex-item-wrap{
+  height: 75rpx;
+  width: 50rpx;float: left;
+}
+.sex-item-ball{
+  height: 28rpx;
+  width: 28rpx;
+  border:1px solid #999;
+  border-radius: 50%;
+  margin:22.5rpx auto
+}
+.sex-item{
+  overflow: hidden;
+  width: 130rpx;
+  height: 75rpx;float: left
+}
+.sex-item-ball-active{
+  background-image: url(http://localhost:7890/images/select.png);
+  background-repeat: no-repeat;
+  background-size: 28rpx;
+  border-color: #ffaf02
+  
+}
+.sex-item-text{
+  height: 75rpx;
+  width: 75rpx;
+  line-height: 75rpx;
+  text-align: left;
+  font-size: 28rpx;
+  float: left
+}
 .label{
   display: inline-block;
   height: 75rpx;line-height: 75rpx;

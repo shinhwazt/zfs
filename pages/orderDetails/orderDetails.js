@@ -1,4 +1,4 @@
-// pages/distribution/distribution.js
+// pages/orderDetails/orderDetails.js
 var app = getApp();
 Page({
 
@@ -6,34 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url:"http://upload.jianshu.io/collections/images/61/0__15815600_401_00.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64",
+    url: "http://upload.jianshu.io/collections/images/61/0__15815600_401_00.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64",
     foods: [],
-    receipt:false
   },
-  //是否开发票处理
-  receiptHandler:function(){
-    var result = this.data.receipt;
-    this.setData({
-      receipt: !result
-    })
-  },
-  //selectAddress
-  selectAddress:function(){
-    wx.navigateTo({
-      url: '../selectAddress/selectAddress',
-    })
-  },
-  submitOrder:function(){
-    wx.navigateTo({
-      url: '../orderDetails/orderDetails',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.foods);
-    console.log(app.globalData.userOrder);
     this.setData({
       foods: app.globalData.userOrder
     })

@@ -1,7 +1,23 @@
 <!--pages/selectAddress/selectAddress.wxml-->
 <view class='selectAddressPanel'>
   <view class='address-group'>
+    <view class='address-item' bindtouchstart='touchStartHandler' bindtouchmove='touchMoveHandler' bindtouchend='touchEndHandler' style='left:{{left}}rpx'>
+      <view class='address-item-clear'>
 
-    <view class='add-item'></view>
+      </view>
+      <view class='address-item-info'>
+        <view class='address-text'>郑州侨福芳草地购物中心 </view>
+        <view class='user-text'>张先生   18911970888</view>
+        
+      </view>
+      <view class='address-item-edit'>
+        
+      </view>
+      
+    </view>
+
+    <view class='add-item' bindtap='addAddressItem'>
+    +新增收货地址
+    </view>
   </view>
 </view>

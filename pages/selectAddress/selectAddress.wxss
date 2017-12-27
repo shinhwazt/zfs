@@ -10,10 +10,69 @@
 
 .address-group{
   height: auto;width: 100%;background-color: white;
-  
+  margin-top: 25rpx
 }
 
 .add-item{
   height: 80rpx;width: 100%;background-color: white;font-size: 28rpx;
   line-height: 80rpx;text-align: center;
+}
+
+.address-item{
+  height: 128rpx;
+  width: 100%;
+  
+  position: relative;
+  display: flex;
+}
+.address-item-clear{
+  width: 74rpx;
+}
+.address-item-info{
+  flex: 1;
+  height: 128rpx;
+  border-bottom: 1px solid #e4e4e4;
+  overflow: hidden
+}
+.address-item-edit{
+  height: 128rpx;
+  width: 116rpx;
+  border-bottom: 1px solid #e4e4e4;
+  background-image: url(http://localhost:7890/images/edit.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 31rpx 34rpx
+  
+}
+.address-item::after{
+  content: "删除";
+  display: inline-block;
+  height: 128rpx;
+  width: 116rpx;
+  background-color: red;
+  text-align: center;
+  line-height: 128rpx;
+  position: absolute;
+  right: -116rpx;
+  top: 0;
+  font-size: 32rpx;
+  color: white
+}
+.address-item-delete{
+  height: 128rpx;
+  width: 116rpx;
+  
+}
+.address-text{
+  font-size: 32rpx;
+  height: 40rpx;
+  width: 100%;
+  text-align: left;
+  line-height: 40rpx;
+  overflow: hidden;
+  margin-top: 35rpx
+
+}
+.user-text{
+  font-size: 26rpx
 }

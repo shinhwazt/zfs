@@ -7,7 +7,8 @@
   </view>
 </view>
 <view class='main'>
-  <view class='address'>
+  <view class='address' bindtap='selectAddress'>
+    <text class='address-info'>添加地址</text>
   </view>
   <view class='foods'>
     <view class='foods-store'>
@@ -19,16 +20,16 @@
       </view>
     </view>
 
-    <view class='foods-list-item'>
+    <view class='foods-list-item' wx:for="{{foods}}">
       <view class='foods-list-item-wrap'>
-        <image src='{{url}}' class='foods-list-item-img'></image>
+        <image src='{{item.pic}}' class='foods-list-item-img'></image>
       </view>
       <view class='foods-list-item-message'>
-        <view class='foods-list-item-name'>可爱的汤圆君</view>
-        <view class='foods-list-item-count'>+1</view>
+        <view class='foods-list-item-name'>{{item.title}}</view>
+        <view class='foods-list-item-count'>+{{item.uCount}}</view>
       </view>
       <view class='foods-list-item-price'>
-      $45
+      ￥{{item.uCount*item.price}}
       </view>
     </view>
 
@@ -50,12 +51,23 @@
     </view>
     <view class='pay-type-item'>
       <view class='pay-type-item-left'>备注</view>
-      <view class='pay-type-item-right'>口味、偏好等要求</view>
+      <view class='pay-type-item-right remark'>口味、偏好等要求</view>
+    </view>
+  </view>
+
+  <view class='receipt'>
+    <view class='receipt-item'>
+      <view class='receipt-item-left'>开具发票</view>
+      <view class='receipt-item-right'>
+        <view class='{{receipt?"receipt-flag receipt-flag-active":"receipt-flag"}}' data-flag='{{receipt}}' bindtap='receiptHandler'>
+          <view class='receipt-flag-ball'></view>
+        </view>
+      </view>
     </view>
   </view>
   
 </view>
 <view class='footer'>
   <view class='footer-info'>待支付：135元</view>
-  <view class='footer-btn'>提交订单</view>
+  <view class='footer-btn' bindtap='submitOrder'>提交订单</view>
 </view>

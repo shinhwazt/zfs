@@ -30,7 +30,7 @@
           <view class='group-item-order-count'>
             <text class='cutIcon'  bindtap="cutCurrentFood" data-index="{{index}}" style="{{item.uCount>0?'':'display:none'}}"></text>
             <text class='count' style="{{item.uCount>0?'':'display:none'}}">{{item.uCount}}</text>
-            <text class='addIcon' bindtap="addCurrentFood" data-index="{{index}}"></text>
+            <text class='{{item.uCount>0?"addIcon addMoreIcon":"addIcon"}}' bindtap="addCurrentFood" data-index="{{index}}"></text>
           </view>
         </view>
       </view>

@@ -214,7 +214,7 @@ left:95rpx;
 }
 
 .show-car-title-text{
-  border-left: 5rpx solid #ED693B;padding-left: 13rpx;margin-left: 28rpx;float: left
+  border-left: 5rpx solid #ED693B;padding-left: 13rpx;margin-left: 28rpx
 }
 
 .delete-car-title-text{
@@ -266,7 +266,10 @@ left:95rpx;
   background-position-y:-41rpx;
   overflow:hidden;
   background-size:80rpx 80rpx;
-
+}
+.addMoreIcon{
+  background-position-x:-42rpx;
+  background-position-y:1rpx;
 }
 
 .cutIcon{

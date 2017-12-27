@@ -18,7 +18,7 @@ Page({
     currentActiveIndex:0,
     totalCount:0,
     totalPrice: 0,
-    carUrl:"http://localhost:7890/images/car.png",
+    carUrl:"../../images/car.png",
     showCarPanel:false,
     carFoods:[]
   },
@@ -160,9 +160,37 @@ Page({
   },
   //提交数据到下一步
   nextHandler:function(){
-    wx.navigateTo({
-      url: '../distribution/distribution',
-    })
+    var foods = this.data.foods;
+    var carFoods = [];
+    for (var i = 0, il = foods.length; i < il; i++) {
+      var food = foods[i];
+      if (food.uCount != 0) {
+        carFoods.push(food);
+      }
+    }
+    this.setData({
+      carFoods: carFoods
+    });
+    var count = this.data.totalCount;
+    if (count==0){
+      wx.showToast({
+        title:"购物车为空",
+        duration: 2000
+      })
+    }else{
+      var app = getApp();
+      var orderFoods = this.data.carFoods;
+      var totoalCount = this.data.totalCount;
+      var totalPrice = this.data.totalPrice;
+      app.globalData.totoalCount = totoalCount;
+      app.globalData.totalPrice = totalPrice;
+      app.globalData.userOrder = orderFoods;
+
+      wx.navigateTo({
+        url: '../distribution/distribution',
+      });
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -177,9 +205,9 @@ Page({
     this.setData({
       foods: foods
     });
-    wx.navigateTo({
-      url: '../selectAddress/selectAddress',
-    })
+
+    
+    
   },
 
   /**

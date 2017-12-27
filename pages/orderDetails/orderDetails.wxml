@@ -1,0 +1,85 @@
+<view class='orderDetalsPanel'>
+
+<view class='foods'>
+    <view class='foods-store'>
+      <view class='foods-store-wrap'>
+        <image src='{{url}}' class='foods-store-img'></image>
+      </view>
+      <view class='foods-store-name'>
+        造饭师（勒泰中心店）
+      </view>
+    </view>
+
+    <view class='foods-list-item' wx:for="{{foods}}">
+      <view class='foods-list-item-wrap'>
+        <image src='{{item.pic}}' class='foods-list-item-img'></image>
+      </view>
+      <view class='foods-list-item-message'>
+        <view class='foods-list-item-name'>{{item.title}}</view>
+        <view class='foods-list-item-count'>+{{item.uCount}}</view>
+      </view>
+      <view class='foods-list-item-price'>
+      ￥{{item.uCount*item.price}}
+      </view>
+    </view>
+
+    <view class='bo-cost'>
+      <view class='bo-cost-name'>
+        餐盒费 
+      </view>
+      <view class='bo-cost-price'>
+      ￥20
+      </view>
+    </view>
+    <view class='bo-cost'>
+      <view class='bo-cost-name'>
+        配送费
+      </view>
+      <view class='bo-cost-price'>
+      ￥20
+      </view>
+    </view>
+    <view class='call'>
+      联系商家
+    </view>
+
+  </view>
+
+  <view class='send'>
+    <view class='send-address'>
+      <view class='send-label'>配送地址：</view>
+      <view class='send-group'>
+      <view>郑州侨福芳草地购物中心 </view>
+      <view>张先生   18911970888 </view>
+      </view>
+    </view>
+    <view class='send-time'>
+      <view class='send-label'>期望时间：</view>
+      <view class='send-group'>
+      立即配送
+      </view>
+    </view>
+  </view>
+ 
+  <view class='order'>
+    <view class='order-item'>
+      <view class='order-label'>订单编号：</view>
+      <view class='order-group'>
+      11020170101121314
+      </view>
+    </view>
+    <view class='order-item'>
+      <view class='order-label'>下单时间：</view>
+      <view class='order-group'>
+      2017-09-09 ：12:02 
+      </view>
+    </view>
+    <view class='order-item'>
+      <view class='order-label'>总金额： </view>
+      <view class='order-group'>
+      ￥12
+      </view>
+    </view>
+  </view>
+
+</view>

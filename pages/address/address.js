@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    sex:1,//1=man,0=woman
+  },
+  selectSex:function(){
+    var sex = this.data.sex;
+    sex==1?sex=0:sex=1;
+    this.setData({
+      sex: sex
+    });
   },
 
   /**

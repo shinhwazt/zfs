@@ -34,6 +34,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userOrder:[],
+    totoalCount:0,
+    totalPrice:"",
   }
 })

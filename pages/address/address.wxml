@@ -5,7 +5,20 @@
     <view class='info-item info-item-name'>
       <label class='label'>姓名：</label><input class='input' placeholder='请填写收货人姓名'></input>
     </view>
-    <view class='info-item info-item-sex'></view>
+    <view class='info-item info-item-sex'>
+      <view class='sex-item' bindtap='selectSex'>
+        <view class='sex-item-wrap'>
+          <view class='{{sex==1?"sex-item-ball sex-item-ball-active":"sex-item-ball"}}'></view>
+        </view>
+        <view class='sex-item-text'>男士</view>
+      </view>
+      <view class='sex-item' bindtap='selectSex'>
+        <view class='sex-item-wrap'>
+          <view class='{{sex==0?"sex-item-ball sex-item-ball-active":"sex-item-ball"}}'></view>
+        </view>
+        <view class='sex-item-text'>女士</view>
+      </view>
+    </view>
     <view class='info-item info-item-phone'>
     <label class='label phone'>手机号：</label><input class='input' placeholder='请填写手机号码' type='number'></input>
     </view>

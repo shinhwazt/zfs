@@ -1,0 +1,123 @@
+.orderDetalsPanel{
+  background-color: #f4f4f4;
+  position: fixed;overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  top: 0;left: 0;
+  bottom:0
+
+}
+.foods{
+  height: auto;width: 695rpx;border-radius: 3px;background-color: white;
+  margin:0 auto;overflow: hidden;
+  padding-bottom: 30rpx;margin-top: 25rpx
+}
+.foods-store-wrap{
+  height: 90rpx;
+  width: 85rpx;float: left;
+  overflow: hidden
+}
+.foods-store-img{
+  height: 44rpx;
+  width: 50rpx;
+  margin:23rpx 17rpx
+}
+.foods-shop{
+  height: 90rpx;width: 100%;
+}
+.foods-store-name{
+  height: 90rpx;
+  line-height: 90rpx;text-align: left;
+  font-size: 26rpx
+}
+.foods-list-item{
+  height: 130rpx;width: 667rpx;margin:0 auto;
+  border-bottom: 1rpx solid #E4E4E4;
+  box-sizing: border-box;padding-top: 15rpx
+}
+.foods-list-item-wrap{
+  height: 93rpx;
+  width: 93rpx;
+  overflow: hidden;
+  border-radius: 5rpx;
+  float: left
+}
+.foods-list-item-img{
+  height: 93rpx;
+  width: 93rpx;
+}
+.foods-list-item-message{
+  height: 93rpx;
+  width: 420rpx;
+  float: left;
+  margin-left: 23rpx
+}
+.foods-list-item-name{
+  font-size: 28rpx;
+  margin-top: 13rpx
+}
+.foods-list-item-count{
+  font-size: 26rpx
+}
+.foods-list-item-price{
+  height: 93rpx;width: 100rpx;float: right;
+  text-align: right;
+  font-size: 30rpx
+}
+.bo-cost{
+  height: 40rpx;
+  width: 643rpx;
+  font-size: 28rpx;
+  margin: 0 auto
+}
+.bo-cost-name{
+  height: 40rpx;
+  width: 50%;
+  float: left;
+  text-align: left;
+  line-height: 40rpx;
+}
+.bo-cost-price{
+  height: 40rpx;
+  width: 50%;
+  float: right;
+  text-align: right;
+  line-height: 40rpx
+}
+.call{
+  height: 70rpx;
+  width: 668rpx;
+  margin:0 auto;
+  border-top: 1rpx solid #E4E4E4;
+  text-align: center;
+  line-height: 70rpx;
+  color:#666;
+  margin-top: 20rpx;
+  font-size: 32rpx
+}
+
+.send,.order{
+  width: 695rpx;
+  margin:21rpx auto 0 auto;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 28rpx;
+  border-radius: 5rpx
+}
+.send-address,.send-time,.order-item{
+  width: 639rpx;
+  margin: 0 auto;overflow: hidden
+}
+.send-time{
+  margin-top: 7rpx
+}
+.send-label,.order-label{
+  height: 38rpx;
+  width: 150rpx;float: left;
+  font-size: 28rpx;color:#666;
+}
+.send-group,.order-group{
+  height: auto;width: 489rpx;
+  float: left;color: #333;
+  font-size: 28rpx
+}

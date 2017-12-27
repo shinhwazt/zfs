@@ -53,9 +53,21 @@
 }
 
 .address{
-  height: 208rpx;width: 695rpx;
+  height: 125rpx;width: 695rpx;
   border-radius: 3px;background-color: white;
-  margin:30rpx auto 20rpx auto
+  margin:30rpx auto 20rpx auto;
+  text-align: center;
+  line-height: 125rpx;
+}
+.address-info{
+  
+  font-size: 32rpx;color: #000;box-sizing: border-box;
+  padding-left: 60rpx;
+  background-image: url(http://localhost:7890/images/location.png);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: left;
+  background-size: 25rpx 34rpx
 }
 .foods{
   height: auto;width: 695rpx;border-radius: 3px;background-color: white;
@@ -158,4 +170,70 @@
   height: 45rpx;width: 50%;
   text-align: right;
   float: right
+}
+.remark{
+  color: #999;
+  box-sizing: border-box;
+  padding-right: 35rpx
+}
+.remark{
+  background-image: url(http://localhost:7890/images/right.png);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: right;
+  background-size: 18rpx 33rpx;
+}
+
+.receipt{
+  height: 78rpx;
+  width: 695rpx;
+  margin:20rpx auto;
+  border-radius: 5rpx;
+  background-color: white;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  padding:20rpx 0
+}
+.receipt-item{
+  width: 643rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  margin:0 auto
+}
+.receipt-item-left{
+  height: 45rpx;width: 50%;
+  text-align: left;float: left;
+}
+.receipt-item-right{
+  height: 45rpx;width: 50%;
+  text-align: right;
+  float: right;
+  overflow: hidden
+  
+}
+.receipt-flag{
+  height: 37rpx;
+  width: 62rpx;
+  border-radius: 18.5rpx;
+  background-color: #f4f4f4;
+  float: right;
+  margin-top: 5rpx;
+  position: relative;
+  border: 1px solid #f4f4f4;
+}
+.receipt-flag-active{
+  background-color: #FFAF02;
+  border-color: #FFAF02;
+}
+.receipt-flag-ball{
+  position: absolute;
+  height: 37rpx;
+  width: 37rpx;
+  background-color: white;
+  border-radius: 18.5rpx;
+  left: 25rpx;
+  top:0
+}
+.receipt-flag-active .receipt-flag-ball{
+  left: 0;
 }
