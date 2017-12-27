@@ -52,7 +52,7 @@
   height: 75rpx;float: left
 }
 .sex-item-ball-active{
-  background-image: url(http://localhost:7890/images/select.png);
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/8a72109e-48b1-4549-af2b-9234bd68fe0b?Expires=1829898792&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=848QgVj3MOFW4UWB878Tj8nRAgo%3D);
   background-repeat: no-repeat;
   background-size: 28rpx;
   border-color: #ffaf02

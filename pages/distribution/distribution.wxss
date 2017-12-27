@@ -63,7 +63,7 @@
   
   font-size: 32rpx;color: #000;box-sizing: border-box;
   padding-left: 60rpx;
-  background-image: url(http://localhost:7890/images/location.png);
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/46faf67e-038c-4f38-96ef-046f4c3fbff9?Expires=1829898694&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=TIKPzBB%2B%2F5iwtfuCyo9j8f2fMPo%3D);
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: left;
@@ -177,7 +177,7 @@
   padding-right: 35rpx
 }
 .remark{
-  background-image: url(http://localhost:7890/images/right.png);
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/526d0ff4-2be4-4192-acee-76506e8dfcdf?Expires=1829898738&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=C56l0esKScMkqmaXj3ADYA6e8%2BE%3D);
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: right;

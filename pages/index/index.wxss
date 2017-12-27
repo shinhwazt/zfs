@@ -258,23 +258,23 @@ left:95rpx;
 
 .addIcon{
   display: inline-block;
-  background-image: url(http://localhost:7890/images/icons.png);
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/05f6d67e-e31a-4899-adab-d37e0d32d78d?Expires=1829898649&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=5TkqyRrSptQpoy6vNO%2BRcQ%2BEzk0%3D);
   background-repeat: no-repeat;
   height: 39rpx;
   width: 39rpx;
-  background-position-x:-42rpx;
+  background-position-x:-41rpx;
   background-position-y:-41rpx;
   overflow:hidden;
   background-size:80rpx 80rpx;
 }
 .addMoreIcon{
-  background-position-x:-42rpx;
-  background-position-y:1rpx;
+  background-position-x:-41rpx;
+  background-position-y:0rpx;
 }
 
 .cutIcon{
   display: inline-block;
-  background-image: url(http://localhost:7890/images/icons.png);
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/05f6d67e-e31a-4899-adab-d37e0d32d78d?Expires=1829898649&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=5TkqyRrSptQpoy6vNO%2BRcQ%2BEzk0%3D);
   background-repeat: no-repeat;
   height: 39rpx;
   width: 39rpx;
@@ -293,7 +293,7 @@ background-size:80rpx 80rpx;
 }
 .cutIconCar{
   display: inline-block;
-  background-image: url(http://localhost:7890/images/icons.png);
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/05f6d67e-e31a-4899-adab-d37e0d32d78d?Expires=1829898649&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=5TkqyRrSptQpoy6vNO%2BRcQ%2BEzk0%3D);
   background-repeat: no-repeat;
   height: 39rpx;
   width: 39rpx;
@@ -306,7 +306,7 @@ background-size:80rpx 80rpx;
 }
 .addIconCar{
   display:inline-block;
-background-image:url(http://localhost:7890/images/icons.png);
+background-image:url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/05f6d67e-e31a-4899-adab-d37e0d32d78d?Expires=1829898649&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=5TkqyRrSptQpoy6vNO%2BRcQ%2BEzk0%3D);
 background-repeat:no-repeat;
 height:39rpx;
 width:39rpx;
