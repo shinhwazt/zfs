@@ -206,7 +206,9 @@ Page({
       foods: foods
     });
 
-    
+    wx.navigateTo({
+      url: '../map/map',
+    });
     
   },
 
