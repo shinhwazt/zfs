@@ -1,4 +1,5 @@
 // pages/shop/shop.js
+var app = getApp();
 Page({
 
   /**
@@ -192,10 +193,12 @@ Page({
     }
     
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     var foods = this.data.foods;
     
     for (var i = 0, il = foods.length;i<il;i++){
@@ -206,9 +209,9 @@ Page({
       foods: foods
     });
 
-    wx.navigateTo({
-      url: '../map/map',
-    });
+    
+
+    
     
   },
 
