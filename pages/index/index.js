@@ -198,6 +198,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    /*
+    wx.request({
+      url: app.globalData.serverUrl +"api/small/getoneshop",
+      method:"post"
+    })*/
     
     var foods = this.data.foods;
     

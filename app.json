@@ -9,7 +9,8 @@
     "pages/receipt/receipt",
     "pages/selectAddress/selectAddress",
     "pages/orderDetails/orderDetails",
-    "pages/map/map"
+    "pages/map/map",
+    "pages/register/register"
   ],
   "window": {
     "backgroundTextStyle": "light",

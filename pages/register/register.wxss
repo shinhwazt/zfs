@@ -1,0 +1,49 @@
+/* pages/register/register.wxss */
+page{
+  background-color: #f4f4f4
+}
+.register-header{
+  height: 153rpx;width: 100%;background-color: white;
+  overflow: hidden
+}
+.header-title{
+  height: 50rpx;width: 100%;text-align: center;
+  line-height: 50rpx;font-size: 32rpx;margin-top: 30rpx;color: #000
+}
+.header-description{
+  height: 46rpx;width: 100%;text-align: center;
+  line-height: 46rpx;font-size: 24rpx;color: #666
+}
+.register-content{
+  height: 153rpx;width: 100%;background-color: white;margin-top: 22rpx
+}
+.input-group{
+  height: 76rpx;width: 100%
+}
+.input-label{
+  height: 76rpx;width: 141rpx;
+  text-align: right;font-size: 28rpx;
+  line-height: 76rpx;float: left
+}
+.input-value{
+  height: 76rpx;width: 409rpx;
+  float: left
+}
+.input-value-dom{
+  height: 76rpx;width: 409rpx;
+  line-height: 76rpx;text-align: left;
+  box-sizing: border-box;padding-left: 20rpx;font-size: 28rpx
+}
+.divider{
+  border-bottom: 1px solid #e4e4e4
+}
+.input-btn{
+  height: 50rpx;width: 150rpx;background-color: #ffaf02;
+  color: black;font-size: 24rpx;border-radius: 5rpx;margin-top: 11rpx;float: left;
+  text-align: center;line-height: 50rpx
+}
+.finish{
+  height: 84rpx;width: 652rpx;background-color: #ffaf02;
+  color: black;font-size: 38rpx;text-align: center;line-height: 84rpx;
+  margin: 160rpx auto 0 auto
+}

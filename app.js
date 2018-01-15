@@ -8,6 +8,7 @@ App({
         console.log("chengong");
         wx.getUserInfo({
           success: function (res) {
+            console.log(res);
             _this.globalData.userInfo = res.userInfo;
           }
         });
@@ -37,6 +38,7 @@ App({
                 wx.setStorageSync('userSession', data.sessionId);
                 wx.getUserInfo({
                   success: function (res) {
+                    console.log(res)
                     _this.globalData.userInfo = res.userInfo;
                   }
                 });
@@ -56,6 +58,23 @@ App({
       }
     });
   },
+  //封装ajax
+  /**
+   * obj.method  请求方式
+   * obj.url 请求地址
+   * obj.data  请求方式
+   * obj.header 请求地址
+   * obj.dataType 请求成功回调函数
+   * obj.responseType  请求方式
+   * 
+   * obj.fail 请求地址
+   * obj.complete 请求成功回调函数
+   * obj.success 请求成功回调函数
+   
+   */
+  ajax:function(obj){
+    
+  },
   onLaunch: function () {
     this.checkSession();
     // 展示本地存储能力
@@ -72,5 +91,7 @@ App({
     totalPrice:"",
     serverUrl:"http://localhost:30664/",
     openid:"",
+    small_view_id:"d00c46fdb9bd41048cb4c9848dfb1050",
+    
   }
 })
