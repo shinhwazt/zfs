@@ -7,35 +7,30 @@ Page({
    */
   data: {
     src:"http://upload.jianshu.io/collections/images/61/0__15815600_401_00.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64",
-    categroys: [{ text: "官方推荐", active: true }, { text: "热销饮品", active: false }, { text: "商务套餐", active: false }, { text: "盖饭", active: false }],
-    foods: [
-      { pic: "https://img.meituan.net/100.100.90/xianfu/50d2dc6eb64ff2469e0950f1b252d8fc197410.jpg", title: "w沙律虾多士", description:"做一只有内涵的虾，虾生无憾。",price:10},
-      { pic: "https://img.meituan.net/100.100.90/xianfu/d2f21aefcc4f23e124f12a715f2ffcd0203961.jpg", title: "w腊味菜粒炒饭", description: "简简单单吃一份好吃的炒饭。", price: 20},
-      { pic: "https://img.meituan.net/100.100.90/xianfu/7265e55a212d6bdc8c4782e2974e1bd577436.jpg", title: "w招牌三杯鸡煲", description: "每块鸡肉都干香入味，光闻到味道就忍不住流口水。", price: 30},
-      { pic: "https://img.meituan.net/100.100.90/xianfu/419d54e797bd1a1294837603e7ced58359484.jpg", title: "干炒牛河配冻柠檬茶", description: "干炒牛河配冻柠檬茶干炒牛河配冻柠檬茶干炒牛河配冻柠檬茶", price: 50},
-      { pic: "https://img.meituan.net/100.100.90/xianfu/7a32c0925104ce2f927d79763724da5258040.jpg", title: "w冰火菠萝油", description: "麦兜咀爱！黄油嵌入热腾腾的菠萝包，滋滋滋...", price: 66},
-      { pic: "https://img.meituan.net/100.100.90/xianfu/15f3b15e148df6151c310ae20c56f7db193149.jpg", title: "w街头咖喱鱼蛋", description: "萝卜清爽，鱼蛋Q弹，咖喱味和海鲜味的合二为一。", price: 88 },
-      ],
+    carUrl: "../../images/car.png",
     currentActiveIndex:0,
     totalCount:0,
     totalPrice: 0,
-    carUrl:"../../images/car.png",
+    
     showCarPanel:false,
-    carFoods:[]
+    carFoods:[],
+    goods:[],
+    toView:"category0"
   },
-  testHandler:function(e){
+  categoryHandler:function(e){
     var currentActiveIndex = this.data.currentActiveIndex;
     var afterActiveIndex = e.currentTarget.dataset.id;
     console.log(afterActiveIndex);
     if (currentActiveIndex == afterActiveIndex){
       return;
     }else{
-      var categroy = this.data.categroys;
-      categroy[currentActiveIndex].active = false;
-      categroy[afterActiveIndex].active = true;
+      var goods = this.data.goods;
+      goods[currentActiveIndex].active = false;
+      goods[afterActiveIndex].active = true;
       this.setData({
-        categroys: categroy,
-        currentActiveIndex: afterActiveIndex
+        goods: goods,
+        currentActiveIndex: afterActiveIndex,
+        toView: "category" + afterActiveIndex
       });
 
     }
@@ -43,44 +38,56 @@ Page({
   //添加到购物车
   addCurrentFood:function(e){
     var index = e.currentTarget.dataset.index;
-    var foods = this.data.foods;
-    var current = foods[index];
-    var price = current.price;
+    var pIndex = e.currentTarget.dataset.p;
+    var goods = this.data.goods;
+    var current = goods[pIndex].goods_data[index];
+    var price = current.goods_price;
     var currentCount = current.uCount;
     current.uCount = currentCount+1;
     this.setData({
-      foods: foods
+      goods: goods
     });
     this.computePrice(1, price);
   },
   //移出购物车
   cutCurrentFood: function (e) {
     var index = e.currentTarget.dataset.index;
-    var foods = this.data.foods;
-    var current = foods[index];
+    var pIndex = e.currentTarget.dataset.p;
+    var goods = this.data.goods;
+    var current = goods[pIndex].goods_data[index];
     var currentCount = current.uCount;
-    var price = current.price;
+    var price = current.goods_price;
     current.uCount = currentCount - 1;
     this.setData({
-      foods: foods
+      goods: goods
     });
     this.computePrice(0, price);
+  },
+  carFoodsFilter:function(index,pIndex){
+    var carFoods = this.data.carFoods;
+    for (var i = 0, il = carFoods.length; i < il; i++) {
+      var carFood = carFoods[i];
+      if (carFood.index == index && carFood.pIndex == pIndex) {
+        return carFood
+      }
+    }
   },
   //在购物车中增加
   addCarFood:function(e){
     var index = e.currentTarget.dataset.index;
-    var pIndex = e.currentTarget.dataset.pIndex;
+    var pIndex = e.currentTarget.dataset.pindex;
     var carFoods = this.data.carFoods;
-    var foods = this.data.foods;
-    var current = carFoods[index];
-    var pCurrent = foods[pIndex];
-    var price = current.price;
-    var currentCount = current.uCount;
-    current.uCount = currentCount + 1;
-    pCurrent.uCount = currentCount + 1;
+    var goods = this.data.goods;
+
+    var currentInCar = this.carFoodsFilter(index, pIndex);
+    var currentInGoods = goods[pIndex];
+    var price = currentInCar.goods_price;
+    var currentCount = currentInCar.uCount;
+    currentInCar.uCount = currentCount + 1;
+    currentInGoods.goods_data[index].uCount = currentCount + 1;
     this.setData({
       carFoods: carFoods,
-      foods: foods
+      goods: goods
     });
     this.computePrice(1, price);
 
@@ -88,24 +95,27 @@ Page({
   //在购物车中删除
   cutCarFood:function(e){
     var index = e.currentTarget.dataset.index;
-    var pIndex = e.currentTarget.dataset.pIndex;
+    var pIndex = e.currentTarget.dataset.pindex;
+    var eq = e.currentTarget.dataset.eq;
     var carFoods = this.data.carFoods;
-    var foods = this.data.foods;
-    var current = carFoods[index];
-    var pCurrent = foods[pIndex];
-    var currentCount = current.uCount;
-    var price = current.price;
-    current.uCount = currentCount - 1;
-    pCurrent.uCount = currentCount - 1;
-    if (current.uCount===0){
-      carFoods.splice(index,1);
+    var goods = this.data.goods;
+    var currentInCar = this.carFoodsFilter(index, pIndex);
+    var currentInGoods = goods[pIndex];
+    var currentCount = currentInCar.uCount;
+    var price = currentInCar.goods_price;
+    currentInCar.uCount = currentCount - 1;
+    currentInGoods.goods_data[index].uCount = currentCount - 1;
+    if (currentInCar.uCount===0){
+      //从数组中删除元素
+      
+      carFoods.splice(eq,1);
     }
     if (carFoods.length==0){
       this.hideCarPanel();
     }
     this.setData({
       carFoods: carFoods,
-      foods: foods
+      goods: goods
     });
     this.computePrice(0, price);
   },
@@ -129,24 +139,32 @@ Page({
       });
     }
   },
+  //car factory; 生成购物车数据
+  carFactory:function(){
+    var goods = this.data.goods;
+    var carFoods = [];
+    for (var i = 0, il = goods.length; i < il; i++) {
+      var foods = goods[i].goods_data;
+      for (var j = 0, jl = foods.length; j < jl; j++) {
+        var food = foods[j];
+        if (food.uCount > 0) {
+          carFoods.push(food);
+        }
+      }
+    }
+    this.setData({
+      carFoods: carFoods
+    });
+  },
   //show car panel
   showCarPanel:function(){
     var result = this.data.showCarPanel?false:true;
     var totalCount = this.data.totalCount;
-    var foods = this.data.foods;
-    var carFoods = [];
+    
     if(totalCount===0){
      return console.log("购物车空空如也");
     }else{
-      for (var i = 0,il = foods.length;i<il;i++){
-        var food = foods[i];
-        if(food.uCount!=0){
-          carFoods.push(food);
-        }
-      }
-      this.setData({
-        carFoods: carFoods
-      })
+      this.carFactory();
     }
     
     this.setData({
@@ -161,17 +179,7 @@ Page({
   },
   //提交数据到下一步
   nextHandler:function(){
-    var foods = this.data.foods;
-    var carFoods = [];
-    for (var i = 0, il = foods.length; i < il; i++) {
-      var food = foods[i];
-      if (food.uCount != 0) {
-        carFoods.push(food);
-      }
-    }
-    this.setData({
-      carFoods: carFoods
-    });
+    
     var count = this.data.totalCount;
     if (count==0){
       wx.showToast({
@@ -179,7 +187,7 @@ Page({
         duration: 2000
       })
     }else{
-      var app = getApp();
+      this.carFactory();
       var orderFoods = this.data.carFoods;
       var totoalCount = this.data.totalCount;
       var totalPrice = this.data.totalPrice;
@@ -193,31 +201,55 @@ Page({
     }
     
   },
-  
+  initData:function(){
+    var _this = this;
+    app.ajax({
+      url: "api/small/getoneshop",
+      method: "post",
+      data: {
+        smallviewid: "d00c46fdb9bd41048cb4c9848dfb1050"
+      },
+      success: function (data) {
+        var data = data.data;
+        if(data.state==1000){
+          var goods = data.data.list_gooods;
+          console.log(goods);
+          //goods handler
+          _this.dataFactory(goods);
+          _this.setData({
+            goods: goods
+          })
+        }
+      }
+    });
+  },
+  //数据加工 分类add active ,foods add uCount & pIndex
+  dataFactory:function(goods){
+    for(var i=0,il=goods.length;i<il;i++){
+      var good = goods[i];
+      var foods = good.goods_data;
+      if(i==0){
+        good.active = true;
+      }else{
+        good.active = false;
+      }
+      for(var j=0,jl=foods.length;j<jl;j++){
+        var food = foods[j];
+        food.uCount = 0;
+        food.pIndex = i;
+        food.index = j;
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    /*
-    wx.request({
-      url: app.globalData.serverUrl +"api/small/getoneshop",
-      method:"post"
-    })*/
-    
-    var foods = this.data.foods;
-    
-    for (var i = 0, il = foods.length;i<il;i++){
-      foods[i].uCount = 0;
-      foods[i].pIndex = i;
-    }
-    this.setData({
-      foods: foods
+    wx.navigateTo({
+      url: '../address/address',
     });
-
-    
-
-    
-    
+    var _this = this;
+    app.checkSession(_this.initData);
   },
 
   /**

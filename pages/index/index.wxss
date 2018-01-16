@@ -43,7 +43,7 @@ padding-top: 30rpx
 .foods{
   position: fixed;
   width: 100%;
-  top:183rpx;
+  top:258rpx;
   left: 0;
   bottom: 100rpx;
   display: flex;
@@ -91,11 +91,17 @@ padding-top: 30rpx
   overflow-y: scroll;
   overflow-x: hidden
 }
+.foods-item{
+  overflow: hidden
+}
 .group-item{
   overflow: hidden;
   display: flex;
   border-bottom: 1rpx solid #E4E4E4;
   margin-bottom: 40rpx
+}
+.group-item:last-of-type{
+  margin-bottom: 0
 }
 .group-name{
   height: 84rpx;
@@ -334,4 +340,26 @@ background-size:80rpx 80rpx;
   font-size: 32rpx;
   text-align: center;
   line-height: 39rpx;
+}
+
+.tabBar{
+  height: 75rpx;width: 100%;display: flex;
+  box-sizing: border-box;
+  border-bottom: 1px solid #E4E4E4;
+}
+.tab{
+  flex: 1;text-align: center
+}
+.tabBar .tab .text{
+  display: block;
+  height: 75rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  width: 80rpx;
+  line-height: 75rpx;
+  margin: 0 auto;
+}
+.tabActive{
+  box-sizing: border-box;
+  border-bottom: 2px solid #FFAF02
 }

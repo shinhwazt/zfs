@@ -1,9 +1,10 @@
 <!--pages/address/address.wxml-->
-<view class='write-address'>
+<form bindsubmit="submitHandler">
+  <view class='write-address'>
   <view class='panel-title'>联系人</view>
   <view class='info'>
     <view class='info-item info-item-name'>
-      <label class='label'>姓名：</label><input class='input' placeholder='请填写收货人姓名'></input>
+      <label class='label'>姓名：</label><input class='input' placeholder='请填写收货人姓名' name='username'></input>
     </view>
     <view class='info-item info-item-sex'>
       <view class='sex-item' bindtap='selectSex'>
@@ -20,20 +21,24 @@
       </view>
     </view>
     <view class='info-item info-item-phone'>
-    <label class='label phone'>手机号：</label><input class='input' placeholder='请填写手机号码' type='number'></input>
+    <label class='label phone'>手机号：</label><input class='input' placeholder='请填写手机号码' type='number' name='userphone'></input>
     </view>
   </view>
   <view class='panel-title'>收货地址</view>
   <view class='address-panel'>
     <view class='address-item'>
       <label class='address-label'>小区／大厦／学校：</label>
-      <input class='address-input' placeholder='点击'></input>
+      <view class='address-select' bindtap='selectAddress'>点击选择</view>
     </view>
     <view class='address-item'>
       <label class='address-label'>楼号-门牌号：</label>
-      <input class='address-input' placeholder='请填写手机号码名'></input>
+      <input class='address-input' placeholder='请填写楼号-门牌号' name='address'></input>
     </view>
   </view>
 
+  <button class='submit' formType="submit">确定</button>
+
 </view>
+</form>
+
 

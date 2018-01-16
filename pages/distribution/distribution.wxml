@@ -6,7 +6,7 @@
     <text class='header-tabbar-text'>到店自取</text>
   </view>
 </view>
-<view class='main'>
+<scroll-view scroll-y class='main'>
   <view class='address' bindtap='selectAddress'>
     <text class='address-info'>添加地址</text>
   </view>
@@ -22,14 +22,14 @@
 
     <view class='foods-list-item' wx:for="{{foods}}">
       <view class='foods-list-item-wrap'>
-        <image src='{{item.pic}}' class='foods-list-item-img'></image>
+        <image src='{{item.image_url}}' class='foods-list-item-img'></image>
       </view>
       <view class='foods-list-item-message'>
-        <view class='foods-list-item-name'>{{item.title}}</view>
+        <view class='foods-list-item-name'>{{item.goods_name}}</view>
         <view class='foods-list-item-count'>+{{item.uCount}}</view>
       </view>
       <view class='foods-list-item-price'>
-      ￥{{item.uCount*item.price}}
+      ￥{{item.uCount*item.goods_price}}
       </view>
     </view>
 
@@ -38,7 +38,7 @@
         餐盒费 
       </view>
       <view class='bo-cost-price'>
-      ￥20
+      ￥{{boxPrice}}
       </view>
     </view>
 
@@ -66,8 +66,8 @@
     </view>
   </view>
   
-</view>
+</scroll-view>
 <view class='footer'>
-  <view class='footer-info'>待支付：135元</view>
+  <view class='footer-info'>待支付：{{totalPrice}}元</view>
   <view class='footer-btn' bindtap='submitOrder'>提交订单</view>
 </view>

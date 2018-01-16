@@ -1,4 +1,8 @@
 /* pages/distribution/distribution.wxss */
+::-webkit-scrollbar{
+  display: none
+}
+
 .header{
   height: 70rpx;width: 100%;display: flex;
 }

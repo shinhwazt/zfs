@@ -9,6 +9,14 @@ Page({
     sex:1,//1=man,0=woman
     bak: "TxMECNEPjBxy7PUlYvn5NpZqf49vWocg"
   },
+  submitHandler:function(e){
+    console.log(e);
+  },
+  selectAddress:function(){
+    wx.navigateTo({
+      url: '../map/map',
+    });
+  },
   selectSex:function(){
     var sex = this.data.sex;
     sex==1?sex=0:sex=1;
@@ -21,21 +29,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var _this = this;
-    var BMap = new bmap.BMapWX({
-      ak: _this.data.bak
-    });
-    var success = function (data) {
-      console.log(data.wxMarkerData[0].desc);
-      
-    }
-    var fail = function (data) {
-      console.log(data);
-    }
-    BMap.regeocoding({
-      fail: fail,
-      success: success
-    });  
+    
   },
 
   /**

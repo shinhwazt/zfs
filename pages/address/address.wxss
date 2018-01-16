@@ -99,5 +99,23 @@
   display: inline-block;
   flex: 1;
   height: 75rpx;
-  font-size: 28rpx
+  font-size: 28rpx;
+  
+}
+.address-select{
+  display: inline-block;
+  flex: 1;
+  height: 75rpx;
+  font-size: 28rpx;
+  line-height: 75rpx;
+  color: #CCC
+}
+.submit{
+  display: block;
+  height: 78rpx;width: 646rpx;
+  background-color: #FFAF02;
+  font-size: 38rpx;color: #333;
+  text-align: center;line-height: 78rpx;
+  margin-top: 186rpx;
+  border-radius: 0;outline: none;border: none
 }

@@ -10,32 +10,43 @@
   </view>
   <view class='shop-activity'>满40减15</view>
 </view>
+<view class='tabBar'>
+  <view class='tab'>
+    <text class='text tabActive'>点菜</text>
+  </view>
+  <view class='tab'>
+    <text class='text'>商家</text>
+  </view>
+</view>
 <view class='foods'>
   <scroll-view scroll-y class='foods-categroy'>
-    <view wx:for="{{categroys}}" class='{{item.active?"categroy-item categroy-active":"categroy-item"}}' bindtap='testHandler' data-id='{{index}}'>
-      <text class='categroy-text'>{{item.text}}</text>
+    <view wx:for="{{goods}}" class='{{item.active?"categroy-item categroy-active":"categroy-item"}}' bindtap='categoryHandler' data-id='{{index}}'>
+      <text class='categroy-text'>{{item.shop_goods_category_name}}</text>
     </view>
   </scroll-view>
-  <view class='foods-group'>
-    <view class='group-name'>热门饮品</view>
-    <view class='group-item' wx:for="{{foods}}">
-      <view class='group-item-img'>
-        <image src='{{item.pic}}' class='group-item-pic'></image>
-      </view>
-      <view class='group-item-description'>
-        <view class='group-item-description-title'>{{item.title}}</view>
-        <view class='group-item-description-digest'>{{item.description}}</view>
-        <view class='group-item-order'>
-          <view class='group-item-order-price'>￥{{item.price}}</view>
-          <view class='group-item-order-count'>
-            <text class='cutIcon'  bindtap="cutCurrentFood" data-index="{{index}}" style="{{item.uCount>0?'':'display:none'}}"></text>
-            <text class='count' style="{{item.uCount>0?'':'display:none'}}">{{item.uCount}}</text>
-            <text class='{{item.uCount>0?"addIcon addMoreIcon":"addIcon"}}' bindtap="addCurrentFood" data-index="{{index}}"></text>
+  <scroll-view scroll-y class='foods-group' scroll-into-view='{{toView}}' scroll-with-animation='true'>
+    <view class='foods-item' wx:for="{{goods}}" wx:for-index='pIndex' wx:for-item='pItem' id='{{"category"+pIndex}}'>
+        <view class='group-name'>{{pItem.shop_goods_category_name}}</view>
+        <view class='group-item' wx:for="{{pItem.goods_data}}">
+          <view class='group-item-img'>
+            <image src='{{item.image_url}}' class='group-item-pic'></image>
+          </view>
+          <view class='group-item-description'>
+            <view class='group-item-description-title'>{{item.goods_name}}</view>
+            <view class='group-item-description-digest'>{{item.description}}</view>
+            <view class='group-item-order'>
+              <view class='group-item-order-price'>￥{{item.goods_price}}</view>
+              <view class='group-item-order-count'>
+                <text class='cutIcon'  bindtap="cutCurrentFood" data-index="{{item.index}}" data-p="{{item.pIndex}}" style="{{item.uCount>0?'':'display:none'}}"></text>
+                <text class='count' style="{{item.uCount>0?'':'display:none'}}">{{item.uCount}}</text>
+                <text class='{{item.uCount>0?"addIcon addMoreIcon":"addIcon"}}' bindtap="addCurrentFood" data-index="{{item.index}}" data-p="{{item.pIndex}}"></text>
+              </view>
+            </view>
           </view>
         </view>
-      </view>
     </view>
-  </view>
+
+  </scroll-view>
 </view>
 <view class='footer'>
   <view class='footer-total' bindtap='showCarPanel'>
@@ -56,12 +67,12 @@
     </view>
     <view class='show-car-list'>
       <view class='show-car-item' wx:for="{{carFoods}}">
-        <view class='show-car-item-name'>{{item.title}}</view>
+        <view class='show-car-item-name'>{{item.goods_name}}</view>
         <view class='show-car-item-change'>
-          <text class='show-car-item-cost'>￥{{item.uCount*item.price}}</text>
-          <text class='cutIconCar' bindtap='cutCarFood' data-index='{{index}}' data-p-index='{{item.pIndex}}'></text>
+          <text class='show-car-item-cost'>￥{{item.uCount*item.goods_price}}</text>
+          <text class='cutIconCar' bindtap='cutCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='index'></text>
           <text class='show-car-item-count'>{{item.uCount}}</text>
-          <text class='addIconCar' bindtap='addCarFood' data-index='{{index}}' data-p-index='{{item.pIndex}}'></text>
+          <text class='addIconCar' bindtap='addCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='index'></text>
         </view>
       </view>
     </view>

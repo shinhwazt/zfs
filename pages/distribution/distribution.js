@@ -8,7 +8,27 @@ Page({
   data: {
     url:"http://upload.jianshu.io/collections/images/61/0__15815600_401_00.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64",
     foods: [],
-    receipt:false
+    receipt:false,
+    boxPrice:0,
+    totalPrice:0
+  },
+  computeBoxPrice:function(){
+    var boxPrice = 0;
+    var totalPrice = 0;
+    var foods = this.data.foods;
+    for (var i = 0, il = foods.length;i<il;i++){
+      var food = foods[i];
+      var box_num = food.box_num;
+      var box_price = food.box_price;
+      var price = food.goods_price;
+      var count = food.uCount
+      boxPrice += (box_num * box_price);
+      totalPrice += (price * count);
+    }
+    this.setData({
+      boxPrice: boxPrice,
+      totalPrice: totalPrice + boxPrice
+    });
   },
   //是否开发票处理
   receiptHandler:function(){
@@ -28,15 +48,19 @@ Page({
       url: '../orderDetails/orderDetails',
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  initData:function(){
     console.log(this.data.foods);
     console.log(app.globalData.userOrder);
     this.setData({
       foods: app.globalData.userOrder
-    })
+    });
+    this.computeBoxPrice();
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.initData();
   },
 
   /**
