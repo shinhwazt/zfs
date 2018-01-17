@@ -55,7 +55,7 @@
   background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/8a72109e-48b1-4549-af2b-9234bd68fe0b?Expires=1829898792&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=848QgVj3MOFW4UWB878Tj8nRAgo%3D);
   background-repeat: no-repeat;
   background-size: 28rpx;
-  border-color: #ffaf02
+  border-color: #ff9900
   
 }
 .sex-item-text{
@@ -103,12 +103,23 @@
   
 }
 .address-select{
-  display: inline-block;
+  
   flex: 1;
+  overflow: hidden;
+  width: 0;
+  box-sizing: border-box;
+  padding-right: 10px
+}
+.address-select-text{
+  
   height: 75rpx;
   font-size: 28rpx;
   line-height: 75rpx;
-  color: #CCC
+  color: #CCC;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+
 }
 .submit{
   display: block;

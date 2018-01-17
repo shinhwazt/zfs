@@ -12,6 +12,11 @@ Page({
     boxPrice:0,
     totalPrice:0
   },
+  writeRemark:function(){
+    wx.navigateTo({
+      url: '../remark/remark',
+    })
+  },
   computeBoxPrice:function(){
     var boxPrice = 0;
     var totalPrice = 0;
@@ -21,7 +26,7 @@ Page({
       var box_num = food.box_num;
       var box_price = food.box_price;
       var price = food.goods_price;
-      var count = food.uCount
+      var count = food.uCount;
       boxPrice += (box_num * box_price);
       totalPrice += (price * count);
     }

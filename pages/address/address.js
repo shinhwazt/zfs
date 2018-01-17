@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sex:1,//1=man,0=woman
-    bak: "TxMECNEPjBxy7PUlYvn5NpZqf49vWocg"
+    sex:1,//1=man,2=woman
+    bak: "TxMECNEPjBxy7PUlYvn5NpZqf49vWocg",
+    address:""
   },
   submitHandler:function(e){
     console.log(e);
@@ -17,19 +18,29 @@ Page({
       url: '../map/map',
     });
   },
-  selectSex:function(){
+  selectSex:function(e){
+    var clickSex = e.currentTarget.dataset.sex;
     var sex = this.data.sex;
-    sex==1?sex=0:sex=1;
-    this.setData({
-      sex: sex
-    });
+    if(clickSex==sex){
+      return;
+    }else{
+      this.setData({
+        sex: clickSex
+      });
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var address = "";
+    if(options.name!=null||options.name!=""){
+      address = options.name;
+    }
+    this.setData({
+      address: address
+    });
   },
 
   /**

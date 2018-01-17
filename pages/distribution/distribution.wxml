@@ -51,7 +51,7 @@
     </view>
     <view class='pay-type-item'>
       <view class='pay-type-item-left'>备注</view>
-      <view class='pay-type-item-right remark'>口味、偏好等要求</view>
+      <view class='pay-type-item-right remark' bindtap='writeRemark'>口味、偏好等要求</view>
     </view>
   </view>
 

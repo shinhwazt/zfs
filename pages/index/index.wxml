@@ -1,5 +1,5 @@
 <!--pages/shop/shop.wxml-->
-<view class='header'>
+<view class='{{currentTab=="order"?"header":"header header-hide"}}' >
   <view class='shop-description'>
     <view class='shop-logo'>
       <image src="{{src}}" class='shop-logo-image'></image>
@@ -12,13 +12,14 @@
 </view>
 <view class='tabBar'>
   <view class='tab'>
-    <text class='text tabActive'>点菜</text>
+    <text class='{{currentTab=="order"?"text tabActive":"text"}}' bindtap='toggleTab' data-tab='order'>点菜</text>
   </view>
   <view class='tab'>
-    <text class='text'>商家</text>
+    <text class='{{currentTab=="show"?"text tabActive":"text"}}' bindtap='toggleTab' data-tab='show'>商家</text>
   </view>
 </view>
-<view class='foods'>
+
+<view class='foods' wx:if='{{currentTab=="order"}}'>
   <scroll-view scroll-y class='foods-categroy'>
     <view wx:for="{{goods}}" class='{{item.active?"categroy-item categroy-active":"categroy-item"}}' bindtap='categoryHandler' data-id='{{index}}'>
       <text class='categroy-text'>{{item.shop_goods_category_name}}</text>
@@ -48,7 +49,35 @@
 
   </scroll-view>
 </view>
-<view class='footer'>
+<view class='shop' wx:else>
+  <view class='shop-address'>
+    <view class='shop-address-icon'></view>
+    <view class='shop-address-text-container'>
+      <view class='shop-address-text'>
+        {{shopAddress}}
+      </view>
+    </view>
+    <view class='shop-address-phone'></view>
+  </view>
+  <view class='shop-info-tab'>
+    <view class='shop-info-tab-item shop-info-tab-line'>
+      <view class='shop-info-tab-label'>配送服务：</view>
+      <view class='shop-info-tab-text'>由商家提供配送服务</view>
+    </view>
+    <view class='shop-info-tab-item'>
+      <view class='shop-info-tab-label'>配送时间： </view>
+      <view class='shop-info-tab-text'>{{shopStart}}-{{shopEnd}}</view>
+    </view>
+  </view>
+  <view class='shop-activity-tab'>
+    <view class='shop-info-tab-item shop-info-tab-line'>
+      <view class='shop-info-tab-label'>商家服务： </view>
+      <view class='shop-info-tab-text'>可开发票 支持货到付款</view>
+    </view>
+    
+  </view>
+</view>
+<view class='{{currentTab=="order"?"footer":"footer footer-hide"}}'>
   <view class='footer-total' bindtap='showCarPanel'>
     合计：{{totalPrice}}元
     <view class='shopping-car'>
@@ -70,9 +99,9 @@
         <view class='show-car-item-name'>{{item.goods_name}}</view>
         <view class='show-car-item-change'>
           <text class='show-car-item-cost'>￥{{item.uCount*item.goods_price}}</text>
-          <text class='cutIconCar' bindtap='cutCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='index'></text>
+          <text class='cutIconCar' bindtap='cutCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='{{index}}'></text>
           <text class='show-car-item-count'>{{item.uCount}}</text>
-          <text class='addIconCar' bindtap='addCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='index'></text>
+          <text class='addIconCar' bindtap='addCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='{{index}}'></text>
         </view>
       </view>
     </view>

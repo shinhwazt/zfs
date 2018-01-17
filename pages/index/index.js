@@ -11,11 +11,15 @@ Page({
     currentActiveIndex:0,
     totalCount:0,
     totalPrice: 0,
-    
+    currentTab:"order",
     showCarPanel:false,
     carFoods:[],
     goods:[],
-    toView:"category0"
+    toView:"category0",
+    headerShow:true,
+    shopAddress:"",
+    shopStart:"",
+    shopEnd:""
   },
   categoryHandler:function(e){
     var currentActiveIndex = this.data.currentActiveIndex;
@@ -201,6 +205,44 @@ Page({
     }
     
   },
+  //tab toggle
+  toggleTab:function(e){
+    var currentTab = this.data.currentTab;
+    var clickTab = e.currentTarget.dataset.tab;
+    var order = "order";
+    var show = "show";
+    if(currentTab==clickTab){
+      return;
+    }else{
+      if (clickTab==order){
+        //更改bar颜色
+        wx.setNavigationBarColor({
+          frontColor: '#ffffff',
+          backgroundColor: '#333',
+        });
+        //显示title
+        var header = true;
+        //显示列表
+        this.setData({
+          currentTab: clickTab,
+          header: header
+        });
+
+      }else{
+        //更改bar颜色
+        wx.setNavigationBarColor({
+          frontColor: '#000000',
+          backgroundColor: '#fff',
+        });
+        //隐藏title
+        
+        //显示商家
+        this.setData({
+          currentTab: clickTab,
+        });
+      }
+    }
+  },
   initData:function(){
     var _this = this;
     app.ajax({
@@ -213,11 +255,21 @@ Page({
         var data = data.data;
         if(data.state==1000){
           var goods = data.data.list_gooods;
+          var model_shop = data.data.model_shop
+
+          
+          var shopAddress = model_shop.shop_address;
+          var shopStart = model_shop.shipping_start;
+          var shopEnd = model_shop.shipping_end;
+
           console.log(goods);
           //goods handler
           _this.dataFactory(goods);
           _this.setData({
-            goods: goods
+            goods: goods,
+            shopAddress: shopAddress,
+            shopStart: shopStart,
+            shopEnd: shopEnd
           })
         }
       }
@@ -245,9 +297,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    /*
     wx.navigateTo({
-      url: '../address/address',
-    });
+      url: '../map/map',
+    });*/
+    
     var _this = this;
     app.checkSession(_this.initData);
   },

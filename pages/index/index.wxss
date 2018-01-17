@@ -1,10 +1,15 @@
 /* pages/shop/shop.wxss */
-
+page{
+  background-color: #F4F4F4
+}
 .header{
   height: 183rpx;
   background-color: #333;
   box-sizing: border-box;
   padding: 0 25rpx
+}
+.header-hide{
+  display: none
 }
 
 .shop-description{
@@ -16,13 +21,13 @@
 }
 .shop-logo{
   height: 130rpx;
-  width: 150rpx;
+  width: 126rpx;
   float: left;
   overflow: hidden
 }
 .shop-logo-image{
   height: 82rpx;width: 93rpx;
-  margin-left: 30rpx;margin-top: 23rpx
+  margin-top: 23rpx
 }
 .shop-info{
 flex: 1;
@@ -89,7 +94,8 @@ padding-top: 30rpx
   box-sizing: border-box;
   padding-left: 35rpx;
   overflow-y: scroll;
-  overflow-x: hidden
+  overflow-x: hidden;
+  background-color: white
 }
 .foods-item{
   overflow: hidden
@@ -344,7 +350,7 @@ background-size:80rpx 80rpx;
 
 .tabBar{
   height: 75rpx;width: 100%;display: flex;
-  box-sizing: border-box;
+  box-sizing: border-box;background-color: white;
   border-bottom: 1px solid #E4E4E4;
 }
 .tab{
@@ -362,4 +368,56 @@ background-size:80rpx 80rpx;
 .tabActive{
   box-sizing: border-box;
   border-bottom: 2px solid #FFAF02
+}
+
+.shop-address{
+  height: 117rpx;width: 100%;
+  margin-top: 13rpx;background-color: white;
+  display: flex
+}
+.shop-address-icon{
+  height: 117rpx;width: 94rpx;
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/46faf67e-038c-4f38-96ef-046f4c3fbff9?Expires=1829898694&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=TIKPzBB%2B%2F5iwtfuCyo9j8f2fMPo%3D);
+  background-repeat: no-repeat;background-position: center;
+  background-size: 31rpx 44rpx;
+}
+.shop-address-text-container{
+  flex: 1;overflow: hidden
+}
+.shop-address-text{
+  height: 65rpx;width: 100%;box-sizing: border-box;
+  border-right: 1px solid #e6e6e6;margin-top: 24rpx;font-size: 32rpx
+}
+.shop-address-phone{
+  height: 117rpx;width: 135rpx
+}
+
+.shop-info-tab{
+  height: 153rpx;width: 100%;background-color: white;
+  margin-top: 12rpx;padding-left:30rpx;color: #333
+}
+.shop-info-tab-item{
+  height: 76rpx;width: 100%;
+  display: flex
+}
+.shop-info-tab-line{
+border-bottom: 1px solid #E4E4E4;
+}
+.shop-info-tab-label{
+  height: 76rpx;
+  width: 150rpx;
+  line-height: 76rpx;text-align: left;
+  font-size: 28rpx
+}
+.shop-info-tab-text{
+  height: 76rpx;flex: 1;
+  text-align: left;line-height: 76rpx;font-size: 28rpx
+}
+.shop-activity-tab{
+  height: auto;width: 100%;background-color: white;
+  margin-top: 12rpx;padding-left:30rpx;color: #333;
+  
+}
+.footer-hide{
+  display: none
 }

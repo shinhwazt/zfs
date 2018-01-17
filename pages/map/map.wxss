@@ -1,1 +1,39 @@
 /* pages/map/map.wxss */
+.search{
+  height: 70rpx;display: flex;
+  width: 100%;
+  font-size: 28rpx
+}
+.search-region{
+  height: 70rpx;width: 150rpx;line-height: 70rpx;
+  text-align: center
+}
+.search-input{
+  flex: 1;
+  box-sizing: border-box;padding: 5px 10px
+}
+.input{
+  display: inline-block;width: 100%;
+  border-radius: 30rpx;border: 1px solid #333;
+  height: 30rpx;box-sizing: border-box;
+  font-size: 28rpx;padding: 0 10px
+}
+
+.relation-places{
+  position: fixed;
+  top: 500rpx;left: 0;width: 100%;
+  bottom: 0
+}
+.relation-item{
+  height: 80rpx;width: 100%;overflow: hidden;text-overflow: ellipsis;
+  text-align: left;box-sizing: border-box;padding: 0 20rpx;
+  font-size: 28rpx;line-height: 80rpx;
+}
+::-webkit-scrollbar{
+  display: none
+}
+.search-places-container{
+  position: fixed;
+  top:70rpx;width: 100%;
+  left: 0;bottom: 0;z-index: 2;background-color: white;
+}

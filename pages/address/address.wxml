@@ -7,15 +7,15 @@
       <label class='label'>姓名：</label><input class='input' placeholder='请填写收货人姓名' name='username'></input>
     </view>
     <view class='info-item info-item-sex'>
-      <view class='sex-item' bindtap='selectSex'>
+      <view class='sex-item' bindtap='selectSex' data-sex="1">
         <view class='sex-item-wrap'>
           <view class='{{sex==1?"sex-item-ball sex-item-ball-active":"sex-item-ball"}}'></view>
         </view>
         <view class='sex-item-text'>男士</view>
       </view>
-      <view class='sex-item' bindtap='selectSex'>
+      <view class='sex-item' bindtap='selectSex' data-sex="2">
         <view class='sex-item-wrap'>
-          <view class='{{sex==0?"sex-item-ball sex-item-ball-active":"sex-item-ball"}}'></view>
+          <view class='{{sex==2?"sex-item-ball sex-item-ball-active":"sex-item-ball"}}'></view>
         </view>
         <view class='sex-item-text'>女士</view>
       </view>
@@ -28,7 +28,9 @@
   <view class='address-panel'>
     <view class='address-item'>
       <label class='address-label'>小区／大厦／学校：</label>
-      <view class='address-select' bindtap='selectAddress'>点击选择</view>
+      <view class='address-select' bindtap='selectAddress'>
+        <view class='address-select-text'>{{address==""?"点击选择":address}}</view>
+      </view>
     </view>
     <view class='address-item'>
       <label class='address-label'>楼号-门牌号：</label>

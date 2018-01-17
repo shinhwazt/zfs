@@ -18,21 +18,67 @@ Page({
       width: 50,
       height: 50,
     }],
-    circles:[]
+    circles:[],
+    region:"",
+    suggestions:[],
+   
+    searchPanelShow:false
   },
-  searchHandler:function(){
+  selectHandler:function(e){
+    var name = e.currentTarget.dataset.name;
+    wx.navigateTo({
+      url: '../address/address?name='+name,
+    })
+
+  },
+  focusHandler:function(){
+    this.setData({
+      searchPanelShow:true
+    })
+  },
+  blurHandler:function(){
+    this.setData({
+      searchPanelShow: false
+    })
+  },
+  inputHandler:function(e){
+    
+    var val = e.detail.value;
+    if(val==""){
+      return;
+    }else{
+      this.searchHandler(val);
+    }
+
+  },
+  searchHandler: function (query){
+    var _this = this;
+   
+    var BMap = new bmap.BMapWX({
+      ak: this.data.bak
+    });
     //搜索下拉
+    var region = this.data.region;
+    var address = this.data.address;
+    if (query == null || query ==""){
+      query=address;
+      //updateCount = 2;
+    }
     BMap.suggestion({
       //query: data.wxMarkerData[0].desc,
-      query:"",
-      region: '北京',
+      query: query,
+      region: region,
       city_limit: true,
       fail: function (data) {
         console.log(data);
-
       },
       success: function (data) {
         console.log(data);
+        var setObj = {};
+        setObj.suggestions = data.result;
+        if (data.status==0){
+          _this.setData(setObj);
+        }
 
       }
     });  
@@ -45,10 +91,14 @@ Page({
     });
     //成功回调
     var success = function (data) {
-      console.log(data);
-      console.log(data.wxMarkerData[0]);
-      var latitude = data.wxMarkerData[0].latitude;
-      var longitude = data.wxMarkerData[0].longitude;
+      
+
+      var originalData = data.originalData.result;
+      var location = originalData.location;
+      var latitude = location.lat;
+      var longitude = location.lng;
+      var region = originalData.addressComponent.city;
+      var address = originalData.formatted_address
       var markers = [{
         id: 1,
         latitude: latitude,
@@ -77,54 +127,28 @@ Page({
         longitude: longitude,
         markers: markers,
         circles: circles,
-        address: JSON.stringify(data)
-      })
+        region: region,
+        address: address
+      });
 
+      _this.searchHandler();
     }
 
     var fail = function (data) {
       console.log(data);
     }
-   
     BMap.regeocoding({
       fail: fail,
       success: success
     });
-     /*
-    wx.getLocation({
-      type: 'gcj02',
-      altitude:true,
-      success:function(data){
-        console.log(data);
-        var latitude = data.latitude;
-        var longitude = data.longitude;
-        var markers = [{
-          id: 1,
-          latitude: latitude,
-          longitude: longitude,
-          iconPath: "../../images/location.png",
-          width: 20,
-          height: 30,
-        }];
-        _this.setData({
-          latitude: latitude,
-          longitude: longitude,
-          markers: markers
-        })
-
-      }
-    })*/
+     
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var _this = this;
-    
     _this.initMap();
-    
-
-    
   },
 
   /**
