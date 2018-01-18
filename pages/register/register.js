@@ -5,9 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    phone:""
   },
-
+  phoneUpdate:function(e){
+    var phone = e.detail.value;
+    console.log(phone);
+    this.setData({
+      phone: phone
+    });
+  },
+  getRandomCode:function(){
+    var phone = this.data.phone;
+    var phoneReg = /^1[3|4|5|7|8]\d{9}$/;
+    if(phoneReg.test(phone)){
+      wx.showToast({
+        title: '验证码已发送',
+        icon:"none"
+      });
+      setTimeout(function(){
+        wx.hideToast();
+      },1000)
+    }else{
+      wx.showToast({
+        title: '手机号格式错误',
+        icon: "none"
+      });
+      setTimeout(function () {
+        wx.hideToast();
+      }, 1000);
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -214,33 +214,10 @@ Page({
     if(currentTab==clickTab){
       return;
     }else{
-      if (clickTab==order){
-        //更改bar颜色
-        wx.setNavigationBarColor({
-          frontColor: '#ffffff',
-          backgroundColor: '#333',
-        });
-        //显示title
-        var header = true;
-        //显示列表
-        this.setData({
-          currentTab: clickTab,
-          header: header
-        });
-
-      }else{
-        //更改bar颜色
-        wx.setNavigationBarColor({
-          frontColor: '#000000',
-          backgroundColor: '#fff',
-        });
-        //隐藏title
-        
-        //显示商家
-        this.setData({
-          currentTab: clickTab,
-        });
-      }
+      //显示列表
+      this.setData({
+        currentTab: clickTab,
+      });
     }
   },
   initData:function(){

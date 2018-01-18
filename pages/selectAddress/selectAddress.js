@@ -24,16 +24,27 @@ Page({
     var disX = currentX - lastX;
     var left = this.data.left;
     //this.data.touchX = pageX;
-    if (disX>0){//向右侧华东
+    if (disX>0){//向右侧滑动
       var left = disX - Math.abs(left);
+      
       if(left>=0){
         return this.setData({
           left: 0
         });
+      }else{
+        if(left>(-60)){
+          this.setData({
+            left: 0
+          });
+        }else{
+          this.setData({
+            left: left
+          });
+        }
+        
       }
-      this.setData({
-        left: left
-      });
+      
+      
 
     }else if((-disX)>0){//向左侧滑动
       

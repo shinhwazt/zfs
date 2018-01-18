@@ -26,7 +26,7 @@
       </view>
       <view class='foods-list-item-message'>
         <view class='foods-list-item-name'>{{item.goods_name}}</view>
-        <view class='foods-list-item-count'>+{{item.uCount}}</view>
+        <view class='foods-list-item-count'>x{{item.uCount}}</view>
       </view>
       <view class='foods-list-item-price'>
       ￥{{item.uCount*item.goods_price}}

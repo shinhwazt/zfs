@@ -5,14 +5,28 @@ App({
     var _this = this;
     wx.checkSession({
       success:function(){
-       
-        wx.getUserInfo({
-          success: function (res) {
-            console.log(res);
-            _this.globalData.userInfo = res.userInfo;
-          }
-        });
-        handler();
+        var sessionId = wx.getStorageSync("sessionId");
+
+        var is_register = wx.getStorageSync('is_register');
+        if (is_register == false) {
+          wx.navigateTo({
+            url: '../register/register',
+          });
+          return;
+        }
+
+        if (sessionId){
+          wx.getUserInfo({
+            success: function (res) {
+              _this.globalData.userInfo = res.userInfo;
+            }
+          });
+          handler();
+        }else{
+          _this.userLogin(handler); //重新登录
+        }
+        
+        
       },
       fail: function () {
         //登录态过期
@@ -21,6 +35,7 @@ App({
       }
     });
   },
+  
   //用户登录
   userLogin: function (handler) {
     var _this = this;
@@ -41,14 +56,27 @@ App({
               var data = data.data;
               if(data.state==1000){
                 wx.hideLoading();
-                wx.setStorageSync('sessionId', data.sessionId);
-                wx.getUserInfo({
-                  success: function (res) {
-                    console.log(res)
-                    _this.globalData.userInfo = res.userInfo;
-                  }
-                });
-                handler();
+                var is_register = data.data.is_register;
+                wx.setStorageSync('sessionId', data.data.sessionId);
+                
+                wx.setStorageSync('is_register', is_register);
+                if (!is_register){
+                  wx.navigateTo({
+                    url: '../register/register',
+                  });
+                }else{
+                  
+                  wx.getUserInfo({
+                    success: function (res) {
+                      console.log(res)
+                      _this.globalData.userInfo = res.userInfo;
+                    }
+                  });
+                  handler();
+
+                }
+
+                
               }else{
                 wx.hideLoading();
                 //shibai
@@ -122,6 +150,7 @@ App({
     totoalCount:0,
     totalPrice:"",
     serverUrl:"http://localhost:30664/",
+    //serverUrl: "https://erpapi.zaofanshi.com/",
     openid:"",
     small_view_id:"d00c46fdb9bd41048cb4c9848dfb1050",
     

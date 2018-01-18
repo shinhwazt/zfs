@@ -144,7 +144,7 @@ margin-left: 20rpx
   
 }
 .group-item-order-price,.group-item-order-count{
-  width: 50%;height: 39rpx;float:left
+  width: 50%;height: 45rpx;float: left;line-height: 45rpx
 }
 .group-item-order-price{
   color: #ed693b;
@@ -272,36 +272,37 @@ left:95rpx;
   display: inline-block;
   background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/05f6d67e-e31a-4899-adab-d37e0d32d78d?Expires=1829898649&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=5TkqyRrSptQpoy6vNO%2BRcQ%2BEzk0%3D);
   background-repeat: no-repeat;
-  height: 39rpx;
-  width: 39rpx;
+  height: 45rpx;
+  width: 45rpx;
   background-position-x:-41rpx;
   background-position-y:-41rpx;
   overflow:hidden;
-  background-size:80rpx 80rpx;
+  background-size:88rpx 88rpx;
 }
 .addMoreIcon{
   background-position-x:-41rpx;
-  background-position-y:0rpx;
+  background-position-y:5rpx;
 }
 
 .cutIcon{
   display: inline-block;
   background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/05f6d67e-e31a-4899-adab-d37e0d32d78d?Expires=1829898649&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=5TkqyRrSptQpoy6vNO%2BRcQ%2BEzk0%3D);
   background-repeat: no-repeat;
-  height: 39rpx;
-  width: 39rpx;
+  height: 45rpx;
+  width: 45rpx;
   background-position-x:0rpx;
-background-position-y:0rpx;
-
+background-position-y:5rpx;
 overflow:hidden;
-background-size:80rpx 80rpx;
+background-size:88rpx 88rpx;
 }
 
 .count{
   display: inline-block;
-  width: 38rpx;text-align: center;
-  height: 39rpx;font-size: 20rpx;
-  vertical-align: top;line-height: 39rpx;color: #999
+  width: 50rpx;text-align: center;
+  height: 45rpx;font-size: 30rpx;
+  vertical-align: top;line-height: 45rpx;color: #999;
+ 
+  
 }
 .cutIconCar{
   display: inline-block;

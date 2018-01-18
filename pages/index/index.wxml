@@ -1,5 +1,5 @@
 <!--pages/shop/shop.wxml-->
-<view class='{{currentTab=="order"?"header":"header header-hide"}}' >
+<view class='header'>
   <view class='shop-description'>
     <view class='shop-logo'>
       <image src="{{src}}" class='shop-logo-image'></image>
@@ -20,15 +20,15 @@
 </view>
 
 <view class='foods' wx:if='{{currentTab=="order"}}'>
-  <scroll-view scroll-y class='foods-categroy'>
-    <view wx:for="{{goods}}" class='{{item.active?"categroy-item categroy-active":"categroy-item"}}' bindtap='categoryHandler' data-id='{{index}}'>
+  <scroll-view scroll-y='true' class='foods-categroy'>
+    <view wx:for="{{goods}}" wx:key='{{index}}' class='{{item.active?"categroy-item categroy-active":"categroy-item"}}' bindtap='categoryHandler' data-id='{{index}}'>
       <text class='categroy-text'>{{item.shop_goods_category_name}}</text>
     </view>
   </scroll-view>
-  <scroll-view scroll-y class='foods-group' scroll-into-view='{{toView}}' scroll-with-animation='true'>
-    <view class='foods-item' wx:for="{{goods}}" wx:for-index='pIndex' wx:for-item='pItem' id='{{"category"+pIndex}}'>
+  <scroll-view scroll-y='true' class='foods-group' scroll-into-view='{{toView}}' scroll-with-animation='true'>
+    <view class='foods-item' wx:for="{{goods}}" wx:for-index='pIndex' wx:for-item='pItem' id='{{"category"+pIndex}}' wx:key='{{pIndex}}'>
         <view class='group-name'>{{pItem.shop_goods_category_name}}</view>
-        <view class='group-item' wx:for="{{pItem.goods_data}}">
+        <view class='group-item' wx:for="{{pItem.goods_data}}" wx:for-index='index'>
           <view class='group-item-img'>
             <image src='{{item.image_url}}' class='group-item-pic'></image>
           </view>
@@ -95,7 +95,7 @@
       <text class='delete-car-title-text'>清空购物袋</text>
     </view>
     <view class='show-car-list'>
-      <view class='show-car-item' wx:for="{{carFoods}}">
+      <view class='show-car-item' wx:for="{{carFoods}}" wx:for-index='index'>
         <view class='show-car-item-name'>{{item.goods_name}}</view>
         <view class='show-car-item-change'>
           <text class='show-car-item-cost'>￥{{item.uCount*item.goods_price}}</text>
