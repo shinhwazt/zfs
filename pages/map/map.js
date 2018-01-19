@@ -26,8 +26,11 @@ Page({
   },
   selectHandler:function(e){
     var name = e.currentTarget.dataset.name;
+    var longitude = this.data.longitude;
+    var latitude = this.data.latitude;
+
     wx.navigateTo({
-      url: '../address/address?name='+name,
+      url: '../address/address?name=' + name + "&longitude=" + longitude + "&latitude=" + latitude,
     })
 
   },

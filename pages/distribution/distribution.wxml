@@ -6,7 +6,7 @@
     <text class='header-tabbar-text'>到店自取</text>
   </view>
 </view>
-<scroll-view scroll-y class='main'>
+<scroll-view scroll-y='true' class='main'>
   <view class='address' bindtap='selectAddress'>
     <text class='address-info'>添加地址</text>
   </view>
@@ -20,7 +20,7 @@
       </view>
     </view>
 
-    <view class='foods-list-item' wx:for="{{foods}}">
+    <view class='foods-list-item' wx:for="{{foods}}" wx:key='*this'>
       <view class='foods-list-item-wrap'>
         <image src='{{item.image_url}}' class='foods-list-item-img'></image>
       </view>

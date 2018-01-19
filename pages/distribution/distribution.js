@@ -27,7 +27,7 @@ Page({
       var box_price = food.box_price;
       var price = food.goods_price;
       var count = food.uCount;
-      boxPrice += (box_num * box_price);
+      boxPrice += (box_num * box_price * count);
       totalPrice += (price * count);
     }
     this.setData({

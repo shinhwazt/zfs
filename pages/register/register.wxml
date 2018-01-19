@@ -17,14 +17,14 @@
     验证码*： 
     </view>
     <view class='input-value'>
-      <input class='input-value-dom' placeholder='请输入您的验证码'>
+      <input class='input-value-dom' placeholder='请输入您的验证码' bindinput='codeUpdate'>
       </input>
     </view>
     <view class='input-btn' bindtap='getRandomCode'>
-    获取验证码
+    {{btnText}}
     </view>
   </view>
 </view>
-<view class='finish'>
+<view class='finish' bindtap='registerHandler'>
   完成注册
 </view>

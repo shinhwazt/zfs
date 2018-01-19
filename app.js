@@ -94,6 +94,19 @@ App({
       }
     });
   },
+  //toast
+  toastr:function(title,icon,time){
+    var arg = {};
+    
+
+    wx.showToast({
+      title: title,
+      icon:icon,
+    });
+    setTimeout(function(){
+      wx.hideToast();
+    },time)
+  },
   //封装ajax
   /**
    * obj.method  请求方式
@@ -114,7 +127,9 @@ App({
     var _default = {
       method:"get",
       success:function(){},
-      fail:function(){},
+      fail:function(){
+        _this.toastr("网络异常，请稍后再试","none",1500);
+      },
       complete: function () { },
     }
     
@@ -153,6 +168,8 @@ App({
     //serverUrl: "https://erpapi.zaofanshi.com/",
     openid:"",
     small_view_id:"d00c46fdb9bd41048cb4c9848dfb1050",
+    addressInfo:{},
+    editAddress:{}
     
   }
 })

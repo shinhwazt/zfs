@@ -4,7 +4,7 @@
   <view class='panel-title'>联系人</view>
   <view class='info'>
     <view class='info-item info-item-name'>
-      <label class='label'>姓名：</label><input class='input' placeholder='请填写收货人姓名' name='username'></input>
+      <label class='label'>姓名：</label><input class='input' placeholder='请填写收货人姓名' name='username' bindinput='nameUpdate' value='{{username}}'></input>
     </view>
     <view class='info-item info-item-sex'>
       <view class='sex-item' bindtap='selectSex' data-sex="1">
@@ -21,7 +21,7 @@
       </view>
     </view>
     <view class='info-item info-item-phone'>
-    <label class='label phone'>手机号：</label><input class='input' placeholder='请填写手机号码' type='number' name='userphone'></input>
+    <label class='label phone'>手机号：</label><input class='input' placeholder='请填写手机号码' type='number' name='userphone' value='{{userphone}}' bindinput='phoneUpdate'></input>
     </view>
   </view>
   <view class='panel-title'>收货地址</view>
@@ -34,7 +34,7 @@
     </view>
     <view class='address-item'>
       <label class='address-label'>楼号-门牌号：</label>
-      <input class='address-input' placeholder='请填写楼号-门牌号' name='address'></input>
+      <input class='address-input' placeholder='请填写楼号-门牌号' name='houseNo' value='{{houseNo}}' bindinput='houseNoUpdate'></input>
     </view>
   </view>
 

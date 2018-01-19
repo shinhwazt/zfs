@@ -21,10 +21,28 @@ Page({
     shopStart:"",
     shopEnd:""
   },
+  clearCar:function(){
+    var carFoods = this.data.carFoods;
+    var goods = this.data.goods;
+    for (var i = 0, il = carFoods.length;i<il;i++){
+      var carFood = carFoods[i];
+      var index = carFood.index;
+      var pIndex = carFood.pIndex;
+      goods[pIndex].goods_data[index].uCount = 0;
+    }
+    carFoods = [];
+    this.setData({
+      carFoods: carFoods,
+      goods: goods,
+      totalCount: 0,
+      totalPrice: 0,
+    });
+    this.hideCarPanel();
+  },
   categoryHandler:function(e){
     var currentActiveIndex = this.data.currentActiveIndex;
     var afterActiveIndex = e.currentTarget.dataset.id;
-    console.log(afterActiveIndex);
+    
     if (currentActiveIndex == afterActiveIndex){
       return;
     }else{

@@ -1,19 +1,19 @@
 <!--pages/selectAddress/selectAddress.wxml-->
 <view class='selectAddressPanel'>
   <view class='address-group'>
-    <view class='address-item' bindtouchstart='touchStartHandler' bindtouchmove='touchMoveHandler' bindtouchend='touchEndHandler' style='left:{{left}}rpx'>
+    <view class='address-item' bindtouchstart='touchStartHandler' bindtouchmove='touchMoveHandler' bindtouchend='touchEndHandler' wx:for='{{address}}' style='left:{{item.left}}rpx' wx:key='member_shipping_address_id' data-eq='{{index}}'>
       <view class='address-item-clear'>
 
       </view>
       <view class='address-item-info'>
-        <view class='address-text'>郑州侨福芳草地购物中心 </view>
-        <view class='user-text'>张先生   18911970888</view>
+        <view class='address-text'>{{item.member_shipping_address}}</view>
+        <view class='user-text'>{{item.member_shipping_name}} {{item.member_shipping_phone}}</view>
         
       </view>
-      <view class='address-item-edit'>
+      <view class='address-item-edit' bindtap='editAddress' data-id='{{item.member_shipping_address_id}}' data-eq='{{index}}'>
         
       </view>
-      <view class='address-item-delete'>
+      <view class='address-item-delete' bindtap='deleteHandler' data-id='{{item.member_shipping_address_id}}' data-eq='{{index}}'>
         删除
       </view>
       

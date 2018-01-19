@@ -43,7 +43,8 @@
   background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/59ef00b6-ef2f-4080-a546-89ac68fedca1?Expires=1829898563&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=hmUntopIX226z0yusYyMK4uwpYo%3D);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 31rpx 34rpx
+  background-size: 31rpx 34rpx;
+  box-sizing: border-box
   
 }
 .address-item-delete{
