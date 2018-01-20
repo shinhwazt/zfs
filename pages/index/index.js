@@ -15,7 +15,8 @@ Page({
     showCarPanel:false,
     carFoods:[],
     goods:[],
-    toView:"category0",
+    categoryGoods: [],
+    categoryName:"",
     headerShow:true,
     shopAddress:"",
     shopStart:"",
@@ -47,12 +48,15 @@ Page({
       return;
     }else{
       var goods = this.data.goods;
+      var categoryGoods = goods[afterActiveIndex].goods_data;
+      var categoryName = goods[afterActiveIndex].shop_goods_category_name;
       goods[currentActiveIndex].active = false;
       goods[afterActiveIndex].active = true;
       this.setData({
         goods: goods,
         currentActiveIndex: afterActiveIndex,
-        toView: "category" + afterActiveIndex
+        categoryGoods: categoryGoods,
+        categoryName: categoryName
       });
 
     }
@@ -62,12 +66,18 @@ Page({
     var index = e.currentTarget.dataset.index;
     var pIndex = e.currentTarget.dataset.p;
     var goods = this.data.goods;
+    var categoryGoods = this.data.categoryGoods;
+    
     var current = goods[pIndex].goods_data[index];
+    var categoryGoodsItem = categoryGoods[index];
+
     var price = current.goods_price;
     var currentCount = current.uCount;
     current.uCount = currentCount+1;
+    categoryGoodsItem.uCount = currentCount + 1;
     this.setData({
-      goods: goods
+      goods: goods,
+      categoryGoods: categoryGoods
     });
     this.computePrice(1, price);
   },
@@ -76,12 +86,17 @@ Page({
     var index = e.currentTarget.dataset.index;
     var pIndex = e.currentTarget.dataset.p;
     var goods = this.data.goods;
+    var categoryGoods = this.data.categoryGoods;
+
     var current = goods[pIndex].goods_data[index];
+    
     var currentCount = current.uCount;
     var price = current.goods_price;
     current.uCount = currentCount - 1;
+    categoryGoods[index].uCount = currentCount - 1;
     this.setData({
-      goods: goods
+      goods: goods,
+      categoryGoods: categoryGoods
     });
     this.computePrice(0, price);
   },
@@ -100,7 +115,7 @@ Page({
     var pIndex = e.currentTarget.dataset.pindex;
     var carFoods = this.data.carFoods;
     var goods = this.data.goods;
-
+    var currentActiveIndex = this.data.currentActiveIndex;
     var currentInCar = this.carFoodsFilter(index, pIndex);
     var currentInGoods = goods[pIndex];
     var price = currentInCar.goods_price;
@@ -109,7 +124,9 @@ Page({
     currentInGoods.goods_data[index].uCount = currentCount + 1;
     this.setData({
       carFoods: carFoods,
-      goods: goods
+      goods: goods,
+      categoryGoods: goods[currentActiveIndex].goods_data
+      
     });
     this.computePrice(1, price);
 
@@ -121,6 +138,7 @@ Page({
     var eq = e.currentTarget.dataset.eq;
     var carFoods = this.data.carFoods;
     var goods = this.data.goods;
+    var currentActiveIndex = this.data.currentActiveIndex;
     var currentInCar = this.carFoodsFilter(index, pIndex);
     var currentInGoods = goods[pIndex];
     var currentCount = currentInCar.uCount;
@@ -137,7 +155,8 @@ Page({
     }
     this.setData({
       carFoods: carFoods,
-      goods: goods
+      goods: goods,
+      categoryGoods: goods[currentActiveIndex].goods_data
     });
     this.computePrice(0, price);
   },
@@ -287,6 +306,12 @@ Page({
         food.index = j;
       }
     }
+    var categoryName = goods[0].shop_goods_category_name;
+    var categoryGoods = goods[0].goods_data;
+    this.setData({
+      categoryName: categoryName,
+      categoryGoods: categoryGoods
+    })
   },
   /**
    * 生命周期函数--监听页面加载

@@ -241,3 +241,93 @@
 .receipt-flag-active .receipt-flag-ball{
   left: 0;
 }
+
+.distribute-info{
+  height: 208rpx;width: 695rpx;
+  margin:30rpx auto 20rpx auto;
+  background-color: white;
+}
+.distribute-address{
+  height: 125rpx;width: 668rpx;
+  margin:0 auto;
+  border-bottom: 1px solid #E4E4E4;
+  display: flex;
+}
+.distribute-address-icon{
+  height: 125rpx;width: 70rpx;
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/46faf67e-038c-4f38-96ef-046f4c3fbff9?Expires=1829898694&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=TIKPzBB%2B%2F5iwtfuCyo9j8f2fMPo%3D);
+  background-size: 31rpx 44rpx;background-position: center;background-repeat: no-repeat
+}
+.distribute-address-info{
+  flex: 1;box-sizing: border-box;padding-top: 24rpx;padding-bottom: 20rpx;
+}
+.distribute-address-more{
+  height: 125rpx;width: 52rpx;
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/526d0ff4-2be4-4192-acee-76506e8dfcdf?Expires=1829898738&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=C56l0esKScMkqmaXj3ADYA6e8%2BE%3D);
+  background-repeat: no-repeat;background-position: center;background-size: 17rpx 32rpx
+}
+.distribute-address-info-text{
+  height: 44rpx;width: 100%;font-size: 32rpx;
+}
+.distribute-address-info-name{
+  height: 36rpx;width: 100%;font-size: 28rpx;
+}
+.distribute-time{
+  height: 83rpx;width: 668rpx;font-size: 28rpx;line-height: 83rpx;
+  margin: 0 auto;
+}
+
+.selectAddressPanel{
+  position: fixed;bottom: 0;left: 0;top: 0;
+  width: 100%;z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.selectAddressPanel-content{
+  position: fixed;bottom: 0;left: 0;
+  width: 100%;height: 880rpx;background-color: white;z-index: 2;
+}
+.selectAddressPanel-title{
+  height: 80rpx;width: 100%;box-sizing: border-box;
+  border-bottom: 1rpx solid #ccc;display: flex;
+}
+.address-delete,.panel-cancel{
+  height: 80rpx;width: 120rpx;font-size: 28rpx;line-height: 80rpx;
+  text-align: center
+}
+.panel-title{
+  flex: 1;font-size: 28rpx;line-height: 80rpx;text-align: center
+}
+.selectAddressPanel-group{
+  height: 720rpx;width: 100%;overflow-x: hidden;
+  overflow-y: scroll;-webkit-overflow-scrolling: touch
+}
+.address-item{
+  height: 120rpx;width: 100%;display: flex;
+  box-sizing: border-box;border-bottom: 1rpx solid #ccc
+}
+.address-behavior,.address-select{
+  height: 120rpx;width: 80rpx;
+}
+.address-content{
+  flex: 1;box-sizing: border-box;padding:20rpx 0;
+}
+.address-content-top{
+  height: 40rpx;width: 100%
+}
+.address-content-top text{
+  display: block;height: 40rpx;width: auto;float: left;font-size: 28rpx
+}
+.text-for-sex{
+  margin-left: 30rpx;
+}
+.address-content-top .text-for-phone{
+  float: right
+}
+.address-content-bottom{
+  height: 40rpx;width: 100%;font-size:28rpx;
+}
+.selectAddressPanel-add{
+  height: 100rpx;width: 100%;box-sizing: border-box;
+  border-top: 1rpx solid #ccc;font-size: 32rpx;text-align: center;
+  line-height: 100rpx;
+}

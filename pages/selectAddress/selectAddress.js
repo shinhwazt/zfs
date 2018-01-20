@@ -11,6 +11,19 @@ Page({
     left:0,
     address:[]
   },
+  insureAddress:function(e){
+    var eq = e.currentTarget.dataset.eq;
+    var address = this.data.address;
+    var selected = address[eq];
+
+    app.globalData.selectedAddress = selected;
+
+    wx.redirectTo({
+      url: '../distribution/distribution',
+    });
+
+
+  },
   editAddress:function(e){
     var id = e.currentTarget.dataset.id;
     var eq = e.currentTarget.dataset.eq;
@@ -18,12 +31,12 @@ Page({
 
     app.globalData.editAddress = address[eq];
 
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../address/address?edit=true',
     });
   },
   addAddressItem:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../address/address',
     })
   },
@@ -129,7 +142,9 @@ Page({
         if(data.state==1000){
           var address = data.data;
           for(var i=0,il=address.length;i<il;i++){
-            address[i].left = 0
+            address[i].left = 0;
+            var member_shipping_address = address[i].member_shipping_address;
+            address[i].member_shipping_address_show = member_shipping_address.replace(",","-")
           }
           _this.setData({
             address: address

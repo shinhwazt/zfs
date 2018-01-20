@@ -8,12 +8,7 @@ App({
         var sessionId = wx.getStorageSync("sessionId");
 
         var is_register = wx.getStorageSync('is_register');
-        if (is_register == false) {
-          wx.navigateTo({
-            url: '../register/register',
-          });
-          return;
-        }
+        
 
         if (sessionId){
           wx.getUserInfo({
@@ -26,7 +21,12 @@ App({
           _this.userLogin(handler); //重新登录
         }
         
-        
+        if (is_register == false) {
+          wx.navigateTo({
+            url: '../register/register',
+          });
+          return;
+        }
       },
       fail: function () {
         //登录态过期
@@ -164,12 +164,13 @@ App({
     userOrder:[],
     totoalCount:0,
     totalPrice:"",
-    serverUrl:"http://localhost:30664/",
-    //serverUrl: "https://erpapi.zaofanshi.com/",
+    //serverUrl:"http://localhost:30664/",
+    serverUrl: "https://erpapi.zaofanshi.com/",
     openid:"",
     small_view_id:"d00c46fdb9bd41048cb4c9848dfb1050",
     addressInfo:{},
-    editAddress:{}
+    editAddress:{},
+    selectedAddress:{}
     
   }
 })

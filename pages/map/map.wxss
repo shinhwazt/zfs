@@ -32,6 +32,9 @@
 ::-webkit-scrollbar{
   display: none
 }
+
+
+
 .search-places-container{
   position: fixed;
   top:70rpx;width: 100%;

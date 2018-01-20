@@ -58,6 +58,7 @@ padding-top: 30rpx
   width:196rpx;
   overflow-y: scroll;
   overflow-x: hidden;
+   -webkit-overflow-scrolling: touch;
   background-color: #f4f4f4
 }
 .categroy-item{
@@ -95,6 +96,7 @@ padding-top: 30rpx
   padding-left: 35rpx;
   overflow-y: scroll;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   background-color: white
 }
 .foods-item{

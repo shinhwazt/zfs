@@ -7,9 +7,26 @@
   </view>
 </view>
 <scroll-view scroll-y='true' class='main'>
-  <view class='address' bindtap='selectAddress'>
+  <view class='address' bindtap='selectAddress' wx:if='{{addAddressShow}}'>
     <text class='address-info'>添加地址</text>
   </view>
+
+  <view class='distribute-info' wx:else>
+    <view class='distribute-address' bindtap='selectAddress'>
+      <view class='distribute-address-icon'>
+      </view>
+      <view class='distribute-address-info'>
+        <view class='distribute-address-info-text'>{{address}}</view>
+        <view class='distribute-address-info-name'>{{username}}{{userphone}}</view>
+      </view>
+      <view class='distribute-address-more'>
+      </view>
+    </view>
+    <view class='distribute-time'>
+      {{time}}
+    </view>
+  </view>
+
   <view class='foods'>
     <view class='foods-store'>
       <view class='foods-store-wrap'>
@@ -70,4 +87,37 @@
 <view class='footer'>
   <view class='footer-info'>待支付：{{totalPrice}}元</view>
   <view class='footer-btn' bindtap='submitOrder'>提交订单</view>
+</view>
+
+<view class='selectAddressPanel' wx:if='{{addressPanelShow}}'>
+  <view class='selectAddressPanel-content'>
+    <view class='selectAddressPanel-title'>
+      <view class='address-delete' bindtap='callDelete'>{{behaviorText}}</view>
+      <view class='panel-title'>我的收货地址</view>
+      <view class='panel-cancel' bindtap='cancelAddressPanel'>取消</view>
+    </view>
+    <view class='selectAddressPanel-group'>
+      <view class='address-item' wx:for='{{addressList}}'>
+        <view class='address-behavior' bindtap='editAddress' data-id='{{item.member_shipping_address_id}}' data-eq='{{index}}' wx:if='{{update}}'>
+        改
+        </view>
+        <view class='address-behavior' bindtap='deleteAddress' data-id='{{item.member_shipping_address_id}}' data-eq='{{index}}' wx:else>
+        删
+        </view>
+        <view class='address-content' bindtap='selectCurrent' data-eq='{{index}}'>
+          <view class='address-content-top'>
+            <text class='text-for-name'>{{item.member_shipping_name}}</text>
+            <text class='text-for-sex'>{{item.member_shipping_sex==1?'先生':'女士'}}</text>
+            <text class='text-for-phone'>{{item.member_shipping_phone}}</text>
+          </view>
+          <view class='address-content-bottom'>{{item.member_shipping_address_show}}</view>
+        </view>
+        <view class='address-select'></view>
+      </view>
+    </view>
+    <view class='selectAddressPanel-add' bindtap='addAddressItem'>
+      新增收货地址
+    </view>
+  </view>
+  
 </view>

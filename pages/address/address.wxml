@@ -29,7 +29,9 @@
     <view class='address-item'>
       <label class='address-label'>小区／大厦／学校：</label>
       <view class='address-select' bindtap='selectAddress'>
+        <view class='address-select-icon'></view>
         <view class='address-select-text'>{{address==""?"点击选择":address}}</view>
+        <view class='address-select-more'></view>
       </view>
     </view>
     <view class='address-item'>
@@ -42,5 +44,22 @@
 
 </view>
 </form>
+
+<view class='searchPanel' wx:if='{{searchPanelShow}}'>
+  <view class='search'>
+    <view class='search-region'>
+      {{region}}
+    </view>
+    <view class='search-input'>
+      <input class='input' bindinput='inputHandler' bindfocus='focusHandler' ></input>
+    </view>
+  </view>
+
+  <view class='search-places-container'>
+    <view class='relation-item' bindtap='selectHandler' wx:for="{{suggestions}}"        data-name='{{item.name}}' data-lat='{{item.location.lat}}'
+     data-lng='{{item.location.lng}}'>{{item.name}}</view>
+  </view>
+
+</view>
 
 

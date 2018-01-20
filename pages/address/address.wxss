@@ -1,4 +1,7 @@
 /* pages/address/address.wxss */
+::-webkit-scrollbar{
+  display: none
+}
 .write-address{
   width: 100%;
   position:fixed;
@@ -12,16 +15,16 @@
   font-size: 26rpx;padding-left: 30rpx
 }
 .info{
-  height: 227rpx;
+  height: 240rpx;
   width: 100%;background-color: white;
 }
 .info-item{
-  height: 75rpx;
+  height: 80rpx;
   width: 100%;
+  box-sizing: border-box;
 }
 .info-item-name{
   width: 100%;margin-left: 30rpx;
-  box-sizing: border-box;
   border-bottom: 1rpx solid #e4e4e4;
   display: flex
 }
@@ -83,10 +86,10 @@
 }
 
 .address-panel{
-  height: 153rpx;width: 100%;background-color: white;
+  height: 160rpx;width: 100%;background-color: white;
 }
 .address-item{
-  height: 75rpx;width: 100%;margin-left: 30rpx;
+  height: 80rpx;width: 100%;margin-left: 30rpx;box-sizing: border-box;
   border-bottom: 1rpx solid #e4e4e4;display: flex
 }
 .address-label{
@@ -108,18 +111,30 @@
   overflow: hidden;
   width: 0;
   box-sizing: border-box;
-  padding-right: 10px
+  padding-right: 10px;
+  display: flex;
+}
+.address-select-icon{
+  width: 46rpx;height: 80rpx;
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/46faf67e-038c-4f38-96ef-046f4c3fbff9?Expires=1829898694&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=TIKPzBB%2B%2F5iwtfuCyo9j8f2fMPo%3D);
+  background-repeat: no-repeat;background-size: 22rpx 32rpx;background-position: center;
 }
 .address-select-text{
+  flex: 1;
   
-  height: 75rpx;
   font-size: 28rpx;
-  line-height: 75rpx;
+  line-height: 80rpx;
   color: #CCC;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space:nowrap;
 
+}
+.address-select-more{
+  width: 60rpx;height: 80rpx;
+  background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/526d0ff4-2be4-4192-acee-76506e8dfcdf?Expires=1829898738&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=C56l0esKScMkqmaXj3ADYA6e8%2BE%3D);
+  background-repeat: no-repeat;background-size: 22rpx 32rpx;
+  background-position:left center;
 }
 .submit{
   display: block;
@@ -129,4 +144,43 @@
   text-align: center;line-height: 78rpx;
   margin-top: 186rpx;
   border-radius: 0;outline: none;border: none
+}
+.searchPanel{
+  width: 100%;
+  position: fixed;top:0;left: 0;bottom: 0;
+  z-index: 1;background-color: white;
+}
+.search{
+  height: 70rpx;display: flex;
+  width: 100%;
+  font-size: 28rpx;
+  position: fixed;top: 0;left: 0
+}
+.search-region{
+  height: 70rpx;width: 150rpx;line-height: 70rpx;
+  text-align: left;padding-left: 20rpx;box-sizing: border-box
+}
+.search-input{
+  flex: 1;
+  box-sizing: border-box;padding: 5px 10px
+}
+.search-input .input{
+  display: inline-block;width: 100%;
+  border-radius: 30rpx;border: 1px solid #333;
+  height: 30rpx;box-sizing: border-box;
+  font-size: 28rpx;padding: 0 10px
+}
+
+.search-places-container{
+  position: fixed;
+  top:70rpx;width: 100%;
+  left: 0;bottom: 0;z-index: 2;background-color: white;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.relation-item{
+  height: 80rpx;width: 100%;overflow: hidden;text-overflow: ellipsis;
+  text-align: left;box-sizing: border-box;padding: 0 20rpx;
+  font-size: 28rpx;line-height: 80rpx;
 }

@@ -5,8 +5,8 @@
       <view class='address-item-clear'>
 
       </view>
-      <view class='address-item-info'>
-        <view class='address-text'>{{item.member_shipping_address}}</view>
+      <view class='address-item-info' bindtap='insureAddress' data-eq='{{index}}'>
+        <view class='address-text'>{{item.member_shipping_address_show}}</view>
         <view class='user-text'>{{item.member_shipping_name}} {{item.member_shipping_phone}}</view>
         
       </view>

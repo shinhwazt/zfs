@@ -5,6 +5,7 @@ Page({
   /**
    * 页面的初始数据
    */
+  
   data: {
     bak: "TxMECNEPjBxy7PUlYvn5NpZqf49vWocg",
     longitude:0,
@@ -26,8 +27,9 @@ Page({
   },
   selectHandler:function(e){
     var name = e.currentTarget.dataset.name;
-    var longitude = this.data.longitude;
-    var latitude = this.data.latitude;
+    
+    var longitude = e.currentTarget.dataset.lng;
+    var latitude = e.currentTarget.dataset.lat;
 
     wx.navigateTo({
       url: '../address/address?name=' + name + "&longitude=" + longitude + "&latitude=" + latitude,
