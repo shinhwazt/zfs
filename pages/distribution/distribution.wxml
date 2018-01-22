@@ -22,8 +22,8 @@
       <view class='distribute-address-more'>
       </view>
     </view>
-    <view class='distribute-time'>
-      {{time}}
+    <view class='distribute-time' bindtap='selectTime'>
+      {{time}}<text class='sendTime'>{{sendTime}}</text>
     </view>
   </view>
 
@@ -68,7 +68,7 @@
     </view>
     <view class='pay-type-item'>
       <view class='pay-type-item-left'>备注</view>
-      <view class='pay-type-item-right remark' bindtap='writeRemark'>口味、偏好等要求</view>
+      <view class='pay-type-item-right remark' bindtap='writeRemark'>{{remarkText}}</view>
     </view>
   </view>
 
@@ -119,5 +119,21 @@
       新增收货地址
     </view>
   </view>
-  
+</view>
+
+<view class='selectTimePanel' wx:if='{{selectTimePanelShow}}'>
+  <view class='selectTimeContent'>
+    <view class='times'>
+      <view class='times-today-wrap'>
+        <view class='times-today-date'>今天{{week[dateIndex]}}</view>
+      </view>
+      <view class='times-list'>
+
+        <view class='{{index==0?"times-item first-times-item":"times-item"}}' wx:for='{{times}}' data-time='{{item.time}}' data-eq='{{index}}' bindtap='clickTimeHandler' data-value='{{item.value}}'>
+          {{item.time}}
+        </view>
+      </view>
+    </view>
+    <view class='selectTimeCancel' bindtap='cancelSelectTime'>取消</view>
+  </view>
 </view>

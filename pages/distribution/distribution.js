@@ -19,13 +19,103 @@ Page({
     addressList:[],
     addressPanelShow:false,
     update:true,
-    behaviorText:"删除"
+    behaviorText:"删除",
+    times:[],
+    sendTime:"",
+    selectTimePanelShow:false,
+    week: ["周日","周一", "周二", "周三", "周四", "周五", "周六"],
+    dateIndex:0,
+    remarkText:"口味、偏好等要求"
+
+    
+  },
+  clickTimeHandler:function(e){
+    var eq = e.currentTarget.dataset.eq;
+    var time = e.currentTarget.dataset.time;
+    if(eq!=0){
+      this.setData({
+        time:"送出时间",
+        sendTime:time,
+        selectTimePanelShow: false,
+      })
+    }else{
+      var date = new Date();
+      var dateIndex = date.getDay();
+      var sendData = new Date(date.getTime() + 30 * 60 * 1000);//30分钟
+      var hour = sendData.getHours();
+      var min = sendData.getMinutes();
+      if (min == 0) {
+        min = "00";
+      }
+      this.setData({
+        sendTime: "(大约" + hour + ":" + min + "分)",
+        time: "立即送出",
+        sendTime: "(大约" + hour + ":" + min + "分)",
+        selectTimePanelShow: false,
+      })
+    }
+  },
+  initTimes:function(){
+    var times = [{ time: "立即送出",value:0}];
+    var dis = 30*60*1000;
+    var date = new Date();
+
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var day = date.getDate();
+    //立即送出的具体时间
+    var date = new Date(date.getTime()+dis)
+    var hour = date.getHours();
+    var min = date.getMinutes();
+
+    var thanMin = Math.ceil((min/10))*10;
+
+
+    while(true){
+      var millisecond = new Date(year, month, day, hour, thanMin).getTime()+dis;
+      var date = new Date(millisecond);
+      hour = date.getHours();
+      thanMin = date.getMinutes(); 
+      if (thanMin==0){
+        thanMin = "00";
+      }
+      if(hour>=23){
+        break;
+      }
+      var json = {
+        time: hour + ":" + thanMin,
+        value: millisecond
+      }
+      times.push(json);
+    }
+
+    this.setData({
+      times:times
+    })
+
+
+  },
+  //选择时间
+  selectTime: function () {
+    this.initTimes();
+    var selectTimePanelShow = this.data.selectTimePanelShow;
+    this.initTimes();
+    this.setData({
+      selectTimePanelShow: !selectTimePanelShow
+    });
+  },
+  //cancel select time
+  cancelSelectTime:function(){
+    this.setData({
+      selectTimePanelShow: false
+    });
   },
   writeRemark:function(){
     wx.navigateTo({
       url: '../remark/remark',
     })
   },
+  
   computeBoxPrice:function(){
     var boxPrice = 0;
     var totalPrice = 0;
@@ -80,12 +170,42 @@ Page({
       url: '../address/address',
     })
   },
+  //提交订单
   submitOrder:function(){
+    var sessionId = wx.getStorageSync("sessionId");
+    var totalPrice = app.globalData.totalPrice;
+    var selectedAddress = app.globalData.selectedAddress;
+    var remark = this.data.remarkText;
+    var receipt = this.data.receipt;//是否开发票
+    var delivery_time = this.data.sendTime;
+    var goods_data = app.globalData.userOrder;
+
+    var data = {
+      sessionId: sessionId,//sessionId
+      recipient_name: selectedAddress.member_shipping_name,//接收人姓名
+      recipient_phone: selectedAddress.member_shipping_phone,//接收人电话
+      recipient_address: selectedAddress.member_shipping_address_show,//接收人地址
+      recipient_sex: selectedAddress.member_shipping_sex,//接收人性别
+      shipping_fee: "",//配送费
+      total: totalPrice,//总价
+      original_price: totalPrice,//原价
+      caution: remark,//忌口或备注
+      has_invoiced: receipt?1:0,//是否开发票（0-不开，1-开）
+      invoice_title: "",//发票抬头
+      taxpayer_id: "",//纳税人识别号
+      delivery_time: delivery_time,//用户预计送达时间 “立即送达”时为0 其余时间为时间戳格式
+      pay_type: 2,//支付类型（1：货到付款；2：在线支付）
+      pick_type: "",//取餐类型（0：外卖配送；1：到店自取）
+      pickup_time: "",//自取时间
+      pickup_mobile: "",//自取电话
+      latitude: selectedAddress.latitude,//实际送餐地址纬度
+      longitude: selectedAddress.longitude,//实际送餐地址经度
+      goods_data: goods_data,//购物车商品
+      
+    }
 
 
-    wx.navigateTo({
-      url: '../orderDetails/orderDetails',
-    })
+   
   },
   initData:function(){
     console.log(this.data.foods);
@@ -146,13 +266,19 @@ Page({
   selectCurrent:function(e){
     var eq = e.currentTarget.dataset.eq;
     var addressList = this.data.addressList;
-
-
-
-
     var selectedAddress = addressList[eq];
-    
+    app.globalData.selectedAddress = selectedAddress;
+    var date = new Date();
+    var dateIndex = date.getDay();
+    var sendData = new Date(date.getTime()+30*60*1000);//30分钟
+    var hour = sendData.getHours();
+    var min = sendData.getMinutes();
+    if(min==0){
+      min="00";
+    }
     this.setData({
+      dateIndex: dateIndex,
+      sendTime:"(大约"+hour+":"+min+"分)",
       addAddressShow: false,
       addressPanelShow:false,
       address: selectedAddress.member_shipping_address_show,
@@ -198,6 +324,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    
+
     this.getAddressList();
     this.initData();
     
@@ -218,6 +347,15 @@ Page({
     if (addressPanelShow){
       this.getAddressList();
     }
+
+    //show remark
+    var remark = app.globalData.remark;
+    if(remark&&remark!=""){
+      this.setData({
+        remarkText: remark
+      })
+    }
+    
   },
 
   /**

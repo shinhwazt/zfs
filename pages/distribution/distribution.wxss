@@ -2,7 +2,12 @@
 ::-webkit-scrollbar{
   display: none
 }
-
+.sendTime{
+  margin-left: 20rpx
+}
+.sendTime,.first-times-item{
+  color: #029dff
+}
 .header{
   height: 70rpx;width: 100%;display: flex;
 }
@@ -173,7 +178,7 @@
 .pay-type-item-right{
   height: 45rpx;width: 50%;
   text-align: right;
-  float: right
+  float: right;overflow: hidden;text-overflow: ellipsis;white-space: nowrap
 }
 .remark{
   color: #999;
@@ -277,7 +282,7 @@
   margin: 0 auto;
 }
 
-.selectAddressPanel{
+.selectAddressPanel,.selectTimePanel{
   position: fixed;bottom: 0;left: 0;top: 0;
   width: 100%;z-index: 1;
   background-color: rgba(0, 0, 0, 0.3);
@@ -331,3 +336,31 @@
   border-top: 1rpx solid #ccc;font-size: 32rpx;text-align: center;
   line-height: 100rpx;
 }
+
+.selectTimeContent{
+  height: 528rpx;width: 100%;position: fixed;
+  bottom: 0;left: 0;background-color: white;
+}
+.times{
+  height: 427rpx;width: 100%;
+  border-bottom: 1rpx solid #ccc;display: flex
+}
+.times-today-wrap{
+  height: 427rpx;width: 252rpx;background-color: #f4f4f4;overflow: hidden
+}
+.times-today-date{
+  height: 81rpx;width: 252rpx;background-color: white;text-align: center;
+  line-height: 81rpx;font-size: 28rpx
+}
+.selectTimeCancel{
+  height: 100rpx;width: 100%;text-align: center;line-height: 100rpx;
+  font-size: 36rpx
+}
+.times-list{
+  flex: 1;overflow-x: hidden;overflow-y: scroll;-webkit-overflow-scrolling: touch
+}
+.times-item{
+  height: 81rpx;width: 100%;background-color: white;text-align: center;
+  line-height: 81rpx;font-size: 28rpx
+}
+

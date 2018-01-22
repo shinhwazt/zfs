@@ -1,7 +1,6 @@
 // pages/selectAddress/selectAddress.js
 var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -11,6 +10,7 @@ Page({
     left:0,
     address:[]
   },
+  
   insureAddress:function(e){
     var eq = e.currentTarget.dataset.eq;
     var address = this.data.address;
@@ -21,8 +21,6 @@ Page({
     wx.redirectTo({
       url: '../distribution/distribution',
     });
-
-
   },
   editAddress:function(e){
     var id = e.currentTarget.dataset.id;

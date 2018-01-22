@@ -1,4 +1,5 @@
 // pages/remark/remark.js
+var app = getApp();
 Page({
 
   /**
@@ -6,7 +7,7 @@ Page({
    */
   data: {
     remark: ["不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣", "不吃辣",],
-    remarkContent:"this is remark content"
+    remarkContent:""
   },
 
   tapTextHandler:function(e){
@@ -27,7 +28,8 @@ Page({
   },
 
   finishHandler:function(){
-    console.log(this.data.remarkContent);
+    app.globalData.remark = this.data.remarkContent;
+    wx.navigateBack()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -47,7 +49,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    //show remark
+    var remark = app.globalData.remark;
+    if (remark && remark != "") {
+      this.setData({
+        remarkContent: remark
+      })
+    }
   },
 
   /**

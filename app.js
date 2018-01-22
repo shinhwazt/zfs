@@ -170,7 +170,8 @@ App({
     small_view_id:"d00c46fdb9bd41048cb4c9848dfb1050",
     addressInfo:{},
     editAddress:{},
-    selectedAddress:{}
+    selectedAddress:{},
+    remark:""
     
   }
 })
