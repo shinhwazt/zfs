@@ -26,26 +26,36 @@
     </view>
   </view>
   <view class='foods-group'>
-    <view class='group-name'>{{categoryName}}</view>
-    
-        <view class='group-item' wx:for="{{categoryGoods}}" wx:for-index='index' wx:key='shop_goods_id'>
-          <view class='group-item-img'>
-            <image src='{{item.image_url}}' class='group-item-pic'></image>
-          </view>
-          <view class='group-item-description'>
-            <view class='group-item-description-title'>{{item.goods_name}}</view>
-            <view class='group-item-description-digest'>{{item.description}}</view>
-            <view class='group-item-order'>
-              <view class='group-item-order-price'>￥{{item.goods_price}}</view>
-              <view class='group-item-order-count'>
-                <text class='cutIcon'  bindtap="cutCurrentFood" data-index="{{item.index}}" data-p="{{item.pIndex}}" style="{{item.uCount>0?'':'display:none'}}"></text>
-                <text class='count' style="{{item.uCount>0?'':'display:none'}}">{{item.uCount}}</text>
-                <text class='{{item.uCount>0?"addIcon addMoreIcon":"addIcon"}}' bindtap="addCurrentFood" data-index="{{item.index}}" data-p="{{item.pIndex}}"></text>
+    <view class='group-wrapper'>
+      <view class='group-name'>{{categoryName}}</view>
+      <view class='group-item' wx:for="{{categoryGoods}}" wx:for-index='index' wx:key='shop_goods_id'>
+            <view class='group-item-img'>
+              <image src='{{item.image_url}}' class='group-item-pic'></image>
+            </view>
+            <view class='group-item-description'>
+              <view class='group-item-description-title'>{{item.goods_name}}</view>
+              <view class='group-item-description-digest'>{{item.description}}</view>
+              <view class='group-item-order'>
+                <view class='group-item-order-price'>￥{{item.goods_price}}</view>
+                <view class='group-item-order-count'>
+                  <text class='cutIcon'  bindtap="cutCurrentFood" data-index="{{item.index}}" data-p="{{item.pIndex}}" style="{{item.quantity>0?'':'display:none'}}"></text>
+                  <text class='count' style="{{item.quantity>0?'':'display:none'}}">{{item.quantity}}</text>
+                  <text class='{{item.quantity>0?"addIcon addMoreIcon":"addIcon"}}' bindtap="addCurrentFood" data-index="{{item.index}}" data-p="{{item.pIndex}}"></text>
+                </view>
               </view>
             </view>
+
           </view>
-        </view>
+      
+  
   </view>
+  <view class='show-order'>
+    <view class='show-order-icon' bindtap='showOrderList'>
+      <image src='http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/8a72109e-48b1-4549-af2b-9234bd68fe0b?Expires=1829898792&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=848QgVj3MOFW4UWB878Tj8nRAgo%3D' class='show-order-icon-img'></image>
+    </view>
+  </view>
+    </view>
+    
 </view>
 <view class='shop' wx:else>
   <view class='shop-address'>
@@ -96,9 +106,9 @@
       <view class='show-car-item' wx:for="{{carFoods}}" wx:for-index='index' wx:key='*this'>
         <view class='show-car-item-name'>{{item.goods_name}}</view>
         <view class='show-car-item-change'>
-          <text class='show-car-item-cost'>￥{{item.uCount*item.goods_price}}</text>
+          <text class='show-car-item-cost'>￥{{item.quantity*item.goods_price}}</text>
           <text class='cutIconCar' bindtap='cutCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='{{index}}'></text>
-          <text class='show-car-item-count'>{{item.uCount}}</text>
+          <text class='show-car-item-count'>{{item.quantity}}</text>
           <text class='addIconCar' bindtap='addCarFood' data-index='{{item.index}}' data-pIndex='{{item.pIndex}}' data-eq='{{index}}'></text>
         </view>
       </view>

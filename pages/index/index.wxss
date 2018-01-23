@@ -93,11 +93,17 @@ padding-top: 30rpx
 .foods-group{
   flex: 1;
   box-sizing: border-box;
-  padding-left: 35rpx;
-  overflow-y: scroll;
+  
+  
+  background-color: white;
+  position: relative
+}
+.group-wrapper{
+  position: absolute;
+  width: 100%;top: 0;bottom: 100rpx;left: 0 ;padding-left: 35rpx;
+overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  background-color: white
 }
 .foods-item{
   overflow: hidden
@@ -142,7 +148,9 @@ margin-left: 20rpx
 .group-item-order{
   height: 39rpx;
   font-size: 35rpx;
-  margin: 10px 0
+  margin: 10px 0;
+  box-sizing: border-box;
+  padding-right: 35rpx;
   
 }
 .group-item-order-price,.group-item-order-count{
@@ -431,3 +439,14 @@ border-bottom: 1px solid #E4E4E4;
 .footer-hide{
   display: none
 }
+.show-order{
+  height: 100rpx;width: 100%;position: absolute;bottom: 0;right: 0;background-color: white
+}
+.show-order-icon{
+  height: 80rpx;width: 80rpx;border-radius: 50%;overflow: hidden;float: right;
+  margin-right: 29rpx;
+}
+.show-order-icon-img{
+  height: 80rpx;width: 80rpx;
+}
+

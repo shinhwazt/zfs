@@ -6,17 +6,32 @@ App({
     wx.checkSession({
       success:function(){
         var sessionId = wx.getStorageSync("sessionId");
-
         var is_register = wx.getStorageSync('is_register');
         
 
         if (sessionId){
-          wx.getUserInfo({
-            success: function (res) {
-              _this.globalData.userInfo = res.userInfo;
+
+          _this.ajax({
+            method: "post",
+            url: "api/small/onchecksession",
+            data:{
+              sessionId: sessionId
+            },
+            success:function(data){
+              var data = data.data;
+              if(data.state==1000){
+                wx.getUserInfo({
+                  success: function (res) {
+                    _this.globalData.userInfo = res.userInfo;
+                  }
+                });
+                handler();
+              }else{
+                _this.userLogin(handler); //重新登录
+              }
+
             }
           });
-          handler();
         }else{
           _this.userLogin(handler); //重新登录
         }
@@ -50,8 +65,10 @@ App({
             method: "post",
             url: _this.globalData.serverUrl + "api/small/onlogin",
             data: {
-              code: res.code
+              code: res.code,
+              app_id_view: _this.globalData.app_id_view
             },
+            
             success:function(data){
               var data = data.data;
               if(data.state==1000){
@@ -72,7 +89,7 @@ App({
                       _this.globalData.userInfo = res.userInfo;
                     }
                   });
-                  handler();
+                  handler&&handler();
 
                 }
 
@@ -126,7 +143,7 @@ App({
     var sessionId = wx.getStorageSync("sessionId");
     var _default = {
       method:"get",
-      success:function(){},
+      
       fail:function(){
         _this.toastr("网络异常，请稍后再试","none",1500);
       },
@@ -142,11 +159,18 @@ App({
       },
     }
     _default.data ? ajaxObj.data = _default.data:"";
-    _default.success ? ajaxObj.success = _default.success : "";
+   
     _default.fail ? ajaxObj.fail = _default.fail : "";
     _default.complete ? ajaxObj.complete = _default.complete : "";
     
+    ajaxObj.success = function(data){
+      var filterData = data.data;
+      if(filterData.state==9001){
+        _this.userLogin();
+      }
+      obj.success&&obj.success(data);
 
+    }
 
     wx.request(ajaxObj);
   },
@@ -164,14 +188,15 @@ App({
     userOrder:[],
     totoalCount:0,
     totalPrice:"",
-    //serverUrl:"http://localhost:30664/",
-    serverUrl: "https://erpapi.zaofanshi.com/",
+    serverUrl:"http://localhost:30664/",
+    //serverUrl: "https://erpapi.zaofanshi.com/",
     openid:"",
-    small_view_id:"d00c46fdb9bd41048cb4c9848dfb1050",
+    app_id_view:"d00c46fdb9bd41048cb4c9848dfb1050",
     addressInfo:{},
     editAddress:{},
     selectedAddress:{},
-    remark:""
+    remark:"",
+    shopInfo:{}
     
   }
 })

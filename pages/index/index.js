@@ -22,6 +22,12 @@ Page({
     shopStart:"",
     shopEnd:""
   },
+  // show order
+  showOrderList:function(){
+    wx.navigateTo({
+      url: '../orderList/orderList',
+    })
+  },
   clearCar:function(){
     var carFoods = this.data.carFoods;
     var goods = this.data.goods;
@@ -29,7 +35,7 @@ Page({
       var carFood = carFoods[i];
       var index = carFood.index;
       var pIndex = carFood.pIndex;
-      goods[pIndex].goods_data[index].uCount = 0;
+      goods[pIndex].goods_data[index].quantity = 0;
     }
     carFoods = [];
     this.setData({
@@ -72,9 +78,9 @@ Page({
     var categoryGoodsItem = categoryGoods[index];
 
     var price = current.goods_price;
-    var currentCount = current.uCount;
-    current.uCount = currentCount+1;
-    categoryGoodsItem.uCount = currentCount + 1;
+    var currentCount = current.quantity;
+    current.quantity = currentCount+1;
+    categoryGoodsItem.quantity = currentCount + 1;
     this.setData({
       goods: goods,
       categoryGoods: categoryGoods
@@ -90,10 +96,10 @@ Page({
 
     var current = goods[pIndex].goods_data[index];
     
-    var currentCount = current.uCount;
+    var currentCount = current.quantity;
     var price = current.goods_price;
-    current.uCount = currentCount - 1;
-    categoryGoods[index].uCount = currentCount - 1;
+    current.quantity = currentCount - 1;
+    categoryGoods[index].quantity = currentCount - 1;
     this.setData({
       goods: goods,
       categoryGoods: categoryGoods
@@ -119,9 +125,9 @@ Page({
     var currentInCar = this.carFoodsFilter(index, pIndex);
     var currentInGoods = goods[pIndex];
     var price = currentInCar.goods_price;
-    var currentCount = currentInCar.uCount;
-    currentInCar.uCount = currentCount + 1;
-    currentInGoods.goods_data[index].uCount = currentCount + 1;
+    var currentCount = currentInCar.quantity;
+    currentInCar.quantity = currentCount + 1;
+    currentInGoods.goods_data[index].quantity = currentCount + 1;
     this.setData({
       carFoods: carFoods,
       goods: goods,
@@ -141,11 +147,11 @@ Page({
     var currentActiveIndex = this.data.currentActiveIndex;
     var currentInCar = this.carFoodsFilter(index, pIndex);
     var currentInGoods = goods[pIndex];
-    var currentCount = currentInCar.uCount;
+    var currentCount = currentInCar.quantity;
     var price = currentInCar.goods_price;
-    currentInCar.uCount = currentCount - 1;
-    currentInGoods.goods_data[index].uCount = currentCount - 1;
-    if (currentInCar.uCount===0){
+    currentInCar.quantity = currentCount - 1;
+    currentInGoods.goods_data[index].quantity = currentCount - 1;
+    if (currentInCar.quantity===0){
       //从数组中删除元素
       
       carFoods.splice(eq,1);
@@ -188,7 +194,7 @@ Page({
       var foods = goods[i].goods_data;
       for (var j = 0, jl = foods.length; j < jl; j++) {
         var food = foods[j];
-        if (food.uCount > 0) {
+        if (food.quantity > 0) {
           carFoods.push(food);
         }
       }
@@ -263,20 +269,24 @@ Page({
       url: "api/small/getoneshop",
       method: "post",
       data: {
-        smallviewid: "d00c46fdb9bd41048cb4c9848dfb1050"
+        app_id_view: app.globalData.app_id_view
       },
       success: function (data) {
         var data = data.data;
         if(data.state==1000){
           var goods = data.data.list_gooods;
           var model_shop = data.data.model_shop
-
+          
+          app.globalData.shopInfo = model_shop;
           
           var shopAddress = model_shop.shop_address;
           var shopStart = model_shop.shipping_start;
           var shopEnd = model_shop.shipping_end;
-
-          console.log(goods);
+          var shop_fee = model_shop.shop_fee;
+          var shop_id = model_shop.shop_id;
+          app.globalData.shop_fee = shop_fee;
+          app.globalData.shop_id = shop_id;
+          //console.log(goods);
           //goods handler
           _this.dataFactory(goods);
           _this.setData({
@@ -289,7 +299,7 @@ Page({
       }
     });
   },
-  //数据加工 分类add active ,foods add uCount & pIndex
+  //数据加工 分类add active ,foods add quantity & pIndex
   dataFactory:function(goods){
     for(var i=0,il=goods.length;i<il;i++){
       var good = goods[i];
@@ -301,7 +311,7 @@ Page({
       }
       for(var j=0,jl=foods.length;j<jl;j++){
         var food = foods[j];
-        food.uCount = 0;
+        food.quantity = 0;
         food.pIndex = i;
         food.index = j;
       }

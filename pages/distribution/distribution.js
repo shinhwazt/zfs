@@ -22,20 +22,42 @@ Page({
     behaviorText:"删除",
     times:[],
     sendTime:"",
+    sendTimeForServer:0,
     selectTimePanelShow:false,
     week: ["周日","周一", "周二", "周三", "周四", "周五", "周六"],
     dateIndex:0,
-    remarkText:"口味、偏好等要求"
+    remarkText:"口味、偏好等要求",
+    shop_fee:0,
+    distribute:true,
+    shopInfo:{}
 
     
+  },
+  distributeTypeHandler:function(){
+    if (this.data.distribute){
+      return;
+    }
+    this.setData({
+      distribute:true
+    });
+  },
+  inviteTypeHandler:function(){
+    if (!this.data.distribute) {
+      return;
+    }
+    this.setData({
+      distribute: false
+    });
   },
   clickTimeHandler:function(e){
     var eq = e.currentTarget.dataset.eq;
     var time = e.currentTarget.dataset.time;
+    var value = e.currentTarget.dataset.value;
     if(eq!=0){
       this.setData({
-        time:"送出时间",
+        time:"送达时间",
         sendTime:time,
+        sendTimeForServer: value,
         selectTimePanelShow: false,
       })
     }else{
@@ -120,18 +142,19 @@ Page({
     var boxPrice = 0;
     var totalPrice = 0;
     var foods = this.data.foods;
+    var shop_fee = this.data.shop_fee;
     for (var i = 0, il = foods.length;i<il;i++){
       var food = foods[i];
       var box_num = food.box_num;
       var box_price = food.box_price;
       var price = food.goods_price;
-      var count = food.uCount;
+      var count = food.quantity;
       boxPrice += (box_num * box_price * count);
       totalPrice += (price * count);
     }
     this.setData({
       boxPrice: boxPrice,
-      totalPrice: totalPrice + boxPrice
+      totalPrice: totalPrice + boxPrice + shop_fee
     });
   },
   //是否开发票处理
@@ -173,20 +196,23 @@ Page({
   //提交订单
   submitOrder:function(){
     var sessionId = wx.getStorageSync("sessionId");
-    var totalPrice = app.globalData.totalPrice;
+    var totalPrice = this.data.totalPrice;
     var selectedAddress = app.globalData.selectedAddress;
     var remark = this.data.remarkText;
     var receipt = this.data.receipt;//是否开发票
-    var delivery_time = this.data.sendTime;
+    var delivery_time = this.data.sendTimeForServer;
+    var shop_fee = this.data.shop_fee;
     var goods_data = app.globalData.userOrder;
+    var shop_id = app.globalData.shop_id;
 
     var data = {
+      shop_id: shop_id,
       sessionId: sessionId,//sessionId
       recipient_name: selectedAddress.member_shipping_name,//接收人姓名
       recipient_phone: selectedAddress.member_shipping_phone,//接收人电话
       recipient_address: selectedAddress.member_shipping_address_show,//接收人地址
       recipient_sex: selectedAddress.member_shipping_sex,//接收人性别
-      shipping_fee: "",//配送费
+      shipping_fee: shop_fee,//配送费
       total: totalPrice,//总价
       original_price: totalPrice,//原价
       caution: remark,//忌口或备注
@@ -201,8 +227,15 @@ Page({
       latitude: selectedAddress.latitude,//实际送餐地址纬度
       longitude: selectedAddress.longitude,//实际送餐地址经度
       goods_data: goods_data,//购物车商品
-      
     }
+    app.ajax({
+      method:"post",
+      url:"api/small/addorder",
+      data:data,
+      success:function(data){
+        //支付功能
+      }
+    })
 
 
    
@@ -325,7 +358,12 @@ Page({
    */
   onLoad: function (options) {
 
-    
+    var shop_fee = app.globalData.shop_fee;
+    var shopInfo = app.globalData.shopInfo;
+    this.setData({
+      shop_fee: shop_fee,
+      shopInfo: shopInfo
+    });
 
     this.getAddressList();
     this.initData();

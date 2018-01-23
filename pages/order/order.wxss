@@ -1,0 +1,36 @@
+/* pages/order/order.wxss */
+page{
+  background-color: #f4f4f4;
+  padding: 20rpx 30rpx
+}
+.order-list{
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+ 
+  background-color: white;
+  top: 20rpx;bottom: 20rpx;left: 30rpx;right: 30rpx;
+
+}
+.order-item{
+  height: 170rpx;box-sizing: border-box;
+  border-bottom: 1rpx solid #e4e4e4;
+  display: flex;
+}
+.order-item-content{
+  flex: 1;box-sizing: border-box;padding: 30rpx 0 25rpx 27rpx
+}
+.item-info{
+  height: 38rpx;width: 100%;display: flex;font-size: 28rpx
+}
+.item-info .label{
+  width: 155rpx;height: 38rpx;text-align: left;line-height: 38rpx;color: #666666
+}
+.item-info .text{
+  flex: 1;text-align: left;line-height: 38rpx;color: #333333
+}
+.order-item-details{
+  height: 170rpx;width: 90rpx;background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/526d0ff4-2be4-4192-acee-76506e8dfcdf?Expires=1829898738&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=C56l0esKScMkqmaXj3ADYA6e8%2BE%3D);
+  background-repeat: no-repeat;background-position: center center;background-size: 17rpx 32rpx
+}

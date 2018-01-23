@@ -68,6 +68,60 @@
   text-align: center;
   line-height: 125rpx;
 }
+
+
+.invite{
+  height: 264rpx;width: 695rpx;
+  border-radius: 3px;background-color: white;
+  margin:30rpx auto 20rpx auto;padding: 0 13rpx;box-sizing: border-box;
+}
+.invite-top{
+  height: 160rpx;width: 669rpx;box-sizing: border-box;
+  border-bottom: 1rpx solid #e4e4e4;display: flex;
+}
+.invite-icon{
+  height: 160rpx;width: 84rpx;background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/46faf67e-038c-4f38-96ef-046f4c3fbff9?Expires=1829898694&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=TIKPzBB%2B%2F5iwtfuCyo9j8f2fMPo%3D);
+  background-repeat: no-repeat;background-size: 31rpx 44rpx;background-position: center
+}
+.invite-address{
+  flex: 1;box-sizing: border-box;
+  padding: 23rpx 0 19rpx 0
+}
+.invite-address-text{
+  height: 44rpx;width: 100%;text-align: left;line-height: 44rpx;font-size: 32rpx;
+}
+.invite-address-person{
+  height: 35rpx;width: 100%;font-size: 26rpx;line-height: 35rpx;text-align: left
+}
+.invite-address-dis{
+  height: 39rpx;width: 100%;line-height: 39rpx;text-align: left;font-size: 24rpx
+}
+.invite-bottom{
+  height: 104rpx;width: 540rpx;margin-left: 84rpx;
+}
+.invite-time{
+  width: 200rpx;padding: 17rpx 0 12rpx 0;float: left;height: 104rpx;box-sizing: border-box
+}
+.invite-person{
+  width: 200rpx;padding: 17rpx 0 12rpx 0;float: right;height: 104rpx;box-sizing: border-box
+}
+.invite-write-title{
+  height: 35rpx;width: 200rpx;text-align: center;line-height: 35rpx;
+  font-size: 28rpx;color: #b0b0b0
+}
+.invite-write-wrapper{
+  height: 42rpx;width: 200rpx
+}
+.invite-write-text{
+height: 42rpx;width: 183rpx;float: left;text-align: center;line-height: 42rpx;font-size: 28rpx;
+}
+.invite-write-icon{
+  height: 42rpx;width: 17rpx;float: left;background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/526d0ff4-2be4-4192-acee-76506e8dfcdf?Expires=1829898738&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=C56l0esKScMkqmaXj3ADYA6e8%2BE%3D);
+  background-repeat: no-repeat;background-position: center;background-size: 12rpx 22rpx
+}
+
+
+
 .address-info{
   
   font-size: 32rpx;color: #000;box-sizing: border-box;

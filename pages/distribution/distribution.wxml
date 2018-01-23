@@ -1,29 +1,61 @@
 <view class='header'>
   <view class='header-tabbar'>
-    <text class='header-tabbar-text header-tabbar-text-active'>外卖配送</text>
+    <text class='{{distribute?"header-tabbar-text header-tabbar-text-active":"header-tabbar-text"}}' bindtap='distributeTypeHandler'>外卖配送</text>
   </view>
   <view class='header-tabbar'>
-    <text class='header-tabbar-text'>到店自取</text>
+    <text class='{{!distribute?"header-tabbar-text header-tabbar-text-active":"header-tabbar-text"}}'  bindtap='inviteTypeHandler'>到店自取</text>
   </view>
 </view>
 <scroll-view scroll-y='true' class='main'>
-  <view class='address' bindtap='selectAddress' wx:if='{{addAddressShow}}'>
-    <text class='address-info'>添加地址</text>
-  </view>
-
-  <view class='distribute-info' wx:else>
-    <view class='distribute-address' bindtap='selectAddress'>
-      <view class='distribute-address-icon'>
+  <view wx:if='{{distribute}}'>
+  
+    <view class='address' bindtap='selectAddress' wx:if='{{addAddressShow}}'>
+      <text class='address-info'>添加地址</text>
+    </view>
+    <view class='distribute-info' wx:else>
+      <view class='distribute-address' bindtap='selectAddress'>
+        <view class='distribute-address-icon'>
+        </view>
+        <view class='distribute-address-info'>
+          <view class='distribute-address-info-text'>{{address}}</view>
+          <view class='distribute-address-info-name'>{{username}}{{userphone}}</view>
+        </view>
+        <view class='distribute-address-more'>
+        </view>
       </view>
-      <view class='distribute-address-info'>
-        <view class='distribute-address-info-text'>{{address}}</view>
-        <view class='distribute-address-info-name'>{{username}}{{userphone}}</view>
-      </view>
-      <view class='distribute-address-more'>
+      <view class='distribute-time' bindtap='selectTime'>
+        {{time}}<text class='sendTime'>{{sendTime}}</text>
       </view>
     </view>
-    <view class='distribute-time' bindtap='selectTime'>
-      {{time}}<text class='sendTime'>{{sendTime}}</text>
+  </view>
+  <view class='invite' wx:else>
+    <view class='invite-top'>
+      <view class='invite-icon'></view>
+      <view class='invite-address'>
+        <view class='invite-address-text'>{{shopInfo.shop_address}}</view>
+        <view class='invite-address-person'>{{shopInfo.shop_name}}   {{shopInfo.shop_phone}}</view>
+        <view class='invite-address-dis'>商家距离当前位置459m</view>
+      </view>
+    </view>
+    <view class='invite-bottom'>
+      <view class='invite-time'>
+        <view class='invite-write-title'>
+          自取时间
+        </view>
+        <view class='invite-write-wrapper'>
+          <view class='invite-write-text'>大约11：56分</view>
+          <view class='invite-write-icon'></view>
+        </view>
+      </view>
+      <view class='invite-person'>
+      <view class='invite-write-title'>
+          自取电话
+        </view>
+        <view class='invite-write-wrapper'>
+          <view class='invite-write-text'>13833889355</view>
+          <view class='invite-write-icon'></view>
+        </view>
+      </view>
     </view>
   </view>
 
@@ -43,10 +75,10 @@
       </view>
       <view class='foods-list-item-message'>
         <view class='foods-list-item-name'>{{item.goods_name}}</view>
-        <view class='foods-list-item-count'>x{{item.uCount}}</view>
+        <view class='foods-list-item-count'>x{{item.quantity}}</view>
       </view>
       <view class='foods-list-item-price'>
-      ￥{{item.uCount*item.goods_price}}
+      ￥{{item.quantity*item.goods_price}}
       </view>
     </view>
 
@@ -56,6 +88,14 @@
       </view>
       <view class='bo-cost-price'>
       ￥{{boxPrice}}
+      </view>
+    </view>
+    <view class='bo-cost'>
+      <view class='bo-cost-name'>
+        配送费 
+      </view>
+      <view class='bo-cost-price'>
+      ￥{{shop_fee}}
       </view>
     </view>
 
