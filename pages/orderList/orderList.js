@@ -8,6 +8,15 @@ Page({
   data: {
     orders: [],
     currentPage: 1,
+    
+  },
+  showOrderDetails:function(e){
+    var id = e.currentTarget.dataset.id
+    console.log(id);
+    wx.navigateTo({
+      url: '../orderDetails/orderDetails?id='+id,
+    })
+
   },
   getOrder: function () {
     var _this = this;

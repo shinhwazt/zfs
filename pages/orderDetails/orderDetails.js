@@ -7,16 +7,40 @@ Page({
    */
   data: {
     url: "http://upload.jianshu.io/collections/images/61/0__15815600_401_00.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64",
-    foods: [],
+    details: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this;
     this.setData({
       foods: app.globalData.userOrder
     })
+    var id = options.id;
+    app.ajax({
+      method:"post",
+      url:"api/small/getorderdetail",
+      data:{
+        shop_order_id_view:id
+      },
+      success:function(data){
+        var data = data.data;
+        if(data.state==1000){
+          var data = data.data
+          var time = data.create_time;
+          var showTime = time.split(".")[0].replace("T", " ");
+          data.showTime = showTime;
+          _this.setData({
+            details: data
+          });
+        }else{
+          console.log("error")
+        }
+      }
+    })
+
   },
 
   /**

@@ -3,6 +3,9 @@ page{
   background-color: #f4f4f4;
   padding: 20rpx 30rpx
 }
+::-webkit-scrollbar{
+  display: none
+}
 .order-list{
   position: fixed;
   overflow-x: hidden;

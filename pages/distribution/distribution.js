@@ -29,7 +29,8 @@ Page({
     remarkText:"口味、偏好等要求",
     shop_fee:0,
     distribute:true,
-    shopInfo:{}
+    shopInfo:{},
+    submiting:false
 
     
   },
@@ -195,6 +196,15 @@ Page({
   },
   //提交订单
   submitOrder:function(){
+    if(this.data.submiting){
+      return console.log("no finish order");
+    }
+    this.setData({
+      submiting:true
+    });
+    wx.showLoading({
+      title: '订单提交中',
+    })
     var sessionId = wx.getStorageSync("sessionId");
     var totalPrice = this.data.totalPrice;
     var selectedAddress = app.globalData.selectedAddress;
@@ -233,7 +243,54 @@ Page({
       url:"api/small/addorder",
       data:data,
       success:function(data){
+        var data = data.data;
+        if(data.state==1000){
+          var id = data.data;
+          app.ajax({
+            method:"post",
+            url:"api/small/payjsapi",
+            data:{
+              sessionId: wx.getStorageSync("sessionId"),
+              shop_order_id_view:id
+            },
+            success:function(data){
+              var data = data.data;
+              if(data.state==1000){
+                var data = data.data;
+
+                var appId = data.appId;
+                var nonceStr = data.nonceStr;
+                var _package = data.package;
+                var paySign = data.paySign;
+                var timeStamp = data.timeStamp;
+
+                console.log("prepay_id is:" + _package)
+
+                wx.hideLoading();
+
+                wx.requestPayment(
+                  {
+                    'timeStamp': timeStamp,
+                    'nonceStr': nonceStr,
+                    'package': _package,
+                    'signType': 'MD5',
+                    'paySign': paySign,
+                    'success': function (res) { 
+                      console.log("支付完成");
+                    },
+                    'fail': function (res) {
+                      console.log(res);
+                     },
+                    'complete': function (res) { }
+                  })
+                
+              }
+
+            }
+          })
+        }
         //支付功能
+       
       }
     })
 
@@ -301,6 +358,7 @@ Page({
     var addressList = this.data.addressList;
     var selectedAddress = addressList[eq];
     app.globalData.selectedAddress = selectedAddress;
+    wx.setStorageSync("selectedAddress", JSON.stringify(selectedAddress));
     var date = new Date();
     var dateIndex = date.getDay();
     var sendData = new Date(date.getTime()+30*60*1000);//30分钟
@@ -309,6 +367,7 @@ Page({
     if(min==0){
       min="00";
     }
+    
     this.setData({
       dateIndex: dateIndex,
       sendTime:"(大约"+hour+":"+min+"分)",
@@ -360,6 +419,17 @@ Page({
 
     var shop_fee = app.globalData.shop_fee;
     var shopInfo = app.globalData.shopInfo;
+    //var selectedAddress = JSON.parse(wx.getStorageSync("selectedAddress"));
+    var selectedAddress = wx.getStorageSync("selectedAddress")
+    if (selectedAddress){
+      var selectedAddress = JSON.parse(selectedAddress);
+      this.setData({
+        addAddressShow:false,
+        address: selectedAddress.member_shipping_address_show,
+        username: selectedAddress.member_shipping_name,
+        userphone: selectedAddress.member_shipping_phone
+      });
+    }
     this.setData({
       shop_fee: shop_fee,
       shopInfo: shopInfo

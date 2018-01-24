@@ -255,7 +255,8 @@ height: 42rpx;width: 183rpx;float: left;text-align: center;line-height: 42rpx;fo
   background-color: white;
   font-size: 28rpx;
   box-sizing: border-box;
-  padding:20rpx 0
+  padding:20rpx 0;
+  display: none
 }
 .receipt-item{
   width: 643rpx;

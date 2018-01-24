@@ -188,15 +188,16 @@ App({
     userOrder:[],
     totoalCount:0,
     totalPrice:"",
-    serverUrl:"http://localhost:30664/",
-    //serverUrl: "https://erpapi.zaofanshi.com/",
+    //serverUrl:"http://localhost:30664/",
+    serverUrl: "https://erpapi.zaofanshi.com/",
     openid:"",
     app_id_view:"d00c46fdb9bd41048cb4c9848dfb1050",
     addressInfo:{},
     editAddress:{},
     selectedAddress:{},
     remark:"",
-    shopInfo:{}
+    shopInfo:{},
+    
     
   }
 })

@@ -1,5 +1,5 @@
 <view class='order-list'>
-  <view class='order-item' wx:for='{{orders}}' wx:key='*this'>
+  <view class='order-item' wx:for='{{orders}}' wx:key='*this' data-id='{{item.shop_order_id_view}}' bindtap='showOrderDetails'>
     <view class='order-item-content'>
       <view class='item-info'>
         <view class='label'>订单编号：</view>
