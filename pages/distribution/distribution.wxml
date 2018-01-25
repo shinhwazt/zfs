@@ -34,7 +34,7 @@
       <view class='invite-address'>
         <view class='invite-address-text'>{{shopInfo.shop_address}}</view>
         <view class='invite-address-person'>{{shopInfo.shop_name}}   {{shopInfo.shop_phone}}</view>
-        <view class='invite-address-dis'>商家距离当前位置459m</view>
+        <view class='invite-address-dis'>商家距离当前位置{{shopUserDistance}}</view>
       </view>
     </view>
     <view class='invite-bottom'>
@@ -137,14 +137,17 @@
       <view class='panel-cancel' bindtap='cancelAddressPanel'>取消</view>
     </view>
     <view class='selectAddressPanel-group'>
-      <view class='address-item' wx:for='{{addressList}}'>
+      <view class='{{item.addressCanUse?"address-item":"address-item addressCanUse"}}' wx:for='{{addressList}}'>
         <view class='address-behavior' bindtap='editAddress' data-id='{{item.member_shipping_address_id}}' data-eq='{{index}}' wx:if='{{update}}'>
         改
         </view>
         <view class='address-behavior' bindtap='deleteAddress' data-id='{{item.member_shipping_address_id}}' data-eq='{{index}}' wx:else>
         删
         </view>
-        <view class='address-content' bindtap='selectCurrent' data-eq='{{index}}'>
+        <view class='address-content' bindtap='selectCurrent' data-eq='{{index}}' data-use='{{item.addressCanUse}}'>
+          <view class='address-not-use' wx:if='{{!item.addressCanUse}}'>
+            
+          </view>
           <view class='address-content-top'>
             <text class='text-for-name'>{{item.member_shipping_name}}</text>
             <text class='text-for-sex'>{{item.member_shipping_sex==1?'先生':'女士'}}</text>

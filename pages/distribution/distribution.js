@@ -30,9 +30,40 @@ Page({
     shop_fee:0,
     distribute:true,
     shopInfo:{},
-    submiting:false
-
+    submiting:false,
+    distributeDistance:1000,
+    shopUserDistance:"0m",
+    shop_order_id_view:0,
     
+  },
+  paycloseHandler:function(){
+    var _this = this;
+    var shop_order_id_view = _this.data.shop_order_id_view;
+    app.ajax({
+      method:"post",
+      url:"api/small/payclose",
+      data:{
+        shop_order_id_view: shop_order_id_view
+      },
+      success:function(data){
+        var data = data.data;
+        if(data.state==1000){
+          app.toastr("支付已取消","none",1500)
+        }
+      }
+    })
+  },
+  computeDistance: function (lat1, lng1, lat2, lng2){
+    lat1 = lat1 || 0;
+    lng1 = lng1 || 0;
+    lat2 = lat2 || 0;
+    lng2 = lng2 || 0;
+    var rad1 = lat1 * Math.PI / 180.0;
+    var rad2 = lat2 * Math.PI / 180.0;
+    var a = rad1 - rad2;
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+    var r = 6378137;
+    return r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))
   },
   distributeTypeHandler:function(){
     if (this.data.distribute){
@@ -43,11 +74,36 @@ Page({
     });
   },
   inviteTypeHandler:function(){
+    var _this = this;
+    var dis;
     if (!this.data.distribute) {
       return;
     }
-    this.setData({
-      distribute: false
+    wx.getLocation({
+      success: function(res) {
+        var latitude = res.latitude;
+        var longitude = res.longitude;
+        var shopInfo = _this.data.shopInfo;
+        var shopLat = shopInfo.latitude;
+        var shoplng = shopInfo.longitude;
+        
+        dis = _this.computeDistance(latitude, longitude, shopLat, shoplng);
+        if(dis>1000){
+          dis = Math.ceil((dis / 10)) +"km";
+        }else{
+          dis = dis+"m";
+        }
+        _this.setData({
+          shopUserDistance: dis
+        });
+      },
+      fail:function(){
+        
+      }
+    });
+    _this.setData({
+      distribute: false,
+     
     });
   },
   clickTimeHandler:function(e){
@@ -196,6 +252,7 @@ Page({
   },
   //提交订单
   submitOrder:function(){
+    var _this = this;
     if(this.data.submiting){
       return console.log("no finish order");
     }
@@ -246,6 +303,9 @@ Page({
         var data = data.data;
         if(data.state==1000){
           var id = data.data;
+          _this.setData({
+            shop_order_id_view: id
+          })
           app.ajax({
             method:"post",
             url:"api/small/payjsapi",
@@ -277,9 +337,15 @@ Page({
                     'paySign': paySign,
                     'success': function (res) { 
                       console.log("支付完成");
+                      wx.navigateTo({
+                        url: '../index/index',
+                      });
                     },
                     'fail': function (res) {
-                      console.log(res);
+                      _this.setData({
+                        submiting: false
+                      });
+                      _this.paycloseHandler();
                      },
                     'complete': function (res) { }
                   })
@@ -354,7 +420,17 @@ Page({
   },
   //确认当前地址
   selectCurrent:function(e){
+    var use = e.currentTarget.dataset.use;
+    if(!use){
+      wx.showModal({
+        title: '系统提示',
+        content: '当前地址超出店铺配送范围',
+        showCancel:false,
+      });
+      return;
+    }
     var eq = e.currentTarget.dataset.eq;
+    
     var addressList = this.data.addressList;
     var selectedAddress = addressList[eq];
     app.globalData.selectedAddress = selectedAddress;
@@ -385,8 +461,43 @@ Page({
       url: '../address/address',
     })
   },
+  //address factory
+  addressFactory:function(data){
+    var _this = this;
+    var shopInfo = this.data.shopInfo;
+    var shopLat = shopInfo.latitude;
+    var shoplng = shopInfo.longitude;
+    var distributeDistance = this.data.distributeDistance;
+    var addressList = data.data;
+    var addressWrap = [];
+    for (var i = 0, il = addressList.length; i < il; i++) {
+      var address = addressList[i];
+      var member_shipping_address = address.member_shipping_address;
+      address.member_shipping_address_show = member_shipping_address.replace(",", "-");
+      if (distributeDistance == 0) {
+        address.addressCanUse = true;
+      } else {
+        var addressLat = address.latitude;
+        var addresslng = address.longitude;
+        var dis = _this.computeDistance(shopLat, shoplng, addressLat, addresslng);
+        if (dis > distributeDistance) {
+          address.addressCanUse = false;
+          addressWrap.push(address);
+        } else {
+          address.addressCanUse = true;
+          addressWrap.unshift(address);
+        }
+      }
+      
+    }
+    _this.setData({
+      addressList: addressWrap
+    });
+    console.log(addressWrap);
+  },
   //获取地址列表
   getAddressList:function(){
+    
     var _this = this;
     app.ajax({
       method: "post",
@@ -395,17 +506,10 @@ Page({
         sessionId: wx.getStorageSync("sessionId")
       },
       success: function (data) {
+        
         var data = data.data;
         if (data.state == 1000) {
-          var addressList = data.data;
-          for (var i = 0, il = addressList.length; i < il; i++) {
-            var address = addressList[i];
-            var member_shipping_address = address.member_shipping_address;
-            address.member_shipping_address_show = member_shipping_address.replace(",", "-");
-          }
-          _this.setData({
-            addressList: addressList
-          });
+          _this.addressFactory(data);
         }
 
       },
@@ -423,12 +527,24 @@ Page({
     var selectedAddress = wx.getStorageSync("selectedAddress")
     if (selectedAddress){
       var selectedAddress = JSON.parse(selectedAddress);
+      app.globalData.selectedAddress = selectedAddress;
+      var date = new Date();
+      var dateIndex = date.getDay();
+      var sendData = new Date(date.getTime() + 30 * 60 * 1000);//30分钟
+      var hour = sendData.getHours();
+      var min = sendData.getMinutes();
+      if (min == 0) {
+        min = "00";
+      }
       this.setData({
+        dateIndex: dateIndex,
         addAddressShow:false,
+        sendTime: "(大约" + hour + ":" + min + "分)",
         address: selectedAddress.member_shipping_address_show,
         username: selectedAddress.member_shipping_name,
         userphone: selectedAddress.member_shipping_phone
       });
+      
     }
     this.setData({
       shop_fee: shop_fee,

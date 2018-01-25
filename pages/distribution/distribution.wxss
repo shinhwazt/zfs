@@ -301,6 +301,9 @@ height: 42rpx;width: 183rpx;float: left;text-align: center;line-height: 42rpx;fo
 .receipt-flag-active .receipt-flag-ball{
   left: 0;
 }
+.addressCanUse{
+  color:gray!important
+}
 
 .distribute-info{
   height: 208rpx;width: 695rpx;
@@ -369,7 +372,15 @@ height: 42rpx;width: 183rpx;float: left;text-align: center;line-height: 42rpx;fo
   height: 120rpx;width: 80rpx;
 }
 .address-content{
-  flex: 1;box-sizing: border-box;padding:20rpx 0;
+  flex: 1;box-sizing: border-box;padding:20rpx 0;position: relative;
+}
+.address-not-use{
+  height: 120rpx;width: 89rpx;position: absolute;
+  right: 200rpx;top: 0;background-image: url(http://zaofanshi-erp-image.oss-cn-beijing.aliyuncs.com/logo/17ab9190-81f1-470c-b5bb-046f533151b7?Expires=1829898496&OSSAccessKeyId=LTAILdGFo9ChjfkY&Signature=sCilv2FrLPpHF1Xg4LSpvbcrJ6M%3D);
+  background-repeat: no-repeat;background-size: 89rpx 75rpx;background-position: center;
+}
+.address-not-use-img{
+  height: 75rpx;width: 89rpx
 }
 .address-content-top{
   height: 40rpx;width: 100%

@@ -265,6 +265,9 @@ Page({
   },
   initData:function(){
     var _this = this;
+    wx.showLoading({
+      title: '数据加载中',
+    });
     app.ajax({
       url: "api/small/getoneshop",
       method: "post",
@@ -294,7 +297,16 @@ Page({
             shopAddress: shopAddress,
             shopStart: shopStart,
             shopEnd: shopEnd
-          })
+          });
+          wx.hideLoading()
+        }else{
+          wx.showModal({
+            title: '网络异常',
+            content: '是否重新加载',
+            success:function(){
+              _this.initData();
+            }
+          });
         }
       }
     });
