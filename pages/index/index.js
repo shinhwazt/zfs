@@ -29,6 +29,7 @@ Page({
     })
   },
   clearCar:function(){
+    
     var carFoods = this.data.carFoods;
     var goods = this.data.goods;
     for (var i = 0, il = carFoods.length;i<il;i++){
